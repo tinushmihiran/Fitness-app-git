@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "bodybuilder-lifts-hoodie-hd-iow9ycjwjhrayxg8.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

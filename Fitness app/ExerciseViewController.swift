@@ -6,57 +6,73 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
-class ExerciseViewController: UIViewController {
 
-    
-    let RVBtnOne: UIButton = {
-        let RVBtnOne = UIButton(type: .system)
-        RVBtnOne.translatesAutoresizingMaskIntoConstraints = false
-        RVBtnOne.setTitleColor(.black , for: .normal)
-        RVBtnOne.setTitle("Warm Up", for: .normal)
-        //RVBtnOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        RVBtnOne.backgroundColor = .white
-        RVBtnOne.layer.cornerRadius = 20
-        RVBtnOne.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        return RVBtnOne
-    }()
-    
-    
-    
-    let RVBtnTwo: UIButton = {
-        let RVBtnTwo = UIButton(type: .system)
-        RVBtnTwo.translatesAutoresizingMaskIntoConstraints = false
-        RVBtnTwo.setTitleColor(.black , for: .normal)
-        RVBtnTwo.setTitle("Normal", for: .normal)
-        //RVBtnOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        RVBtnTwo.backgroundColor = .white
-        RVBtnTwo.layer.cornerRadius = 20
-        RVBtnTwo.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        return RVBtnTwo
-    }()
-    
-    
-    let RVBtnThree: UIButton = {
-        let RVBtnThree = UIButton(type: .system)
-        RVBtnThree.translatesAutoresizingMaskIntoConstraints = false
-        RVBtnThree.setTitleColor(.black , for: .normal)
-        RVBtnThree.setTitle("Hard", for: .normal)
-        //RVBtnOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        RVBtnThree.backgroundColor = .white
-        RVBtnThree.layer.cornerRadius = 20
-        RVBtnThree.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        return RVBtnThree
-    }()
-    
-    
-    
+
+class ExerciseViewController: UIViewController, UITextFieldDelegate {
+
    
+    
+//    let RVBtnOne: UIButton = {
+//        let RVBtnOne = UIButton(type: .system)
+//        RVBtnOne.translatesAutoresizingMaskIntoConstraints = false
+//        RVBtnOne.setTitleColor(.black , for: .normal)
+//        RVBtnOne.setTitle("Warm Up", for: .normal)
+//       // RVBtnOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+//        RVBtnOne.backgroundColor = .white
+//        RVBtnOne.layer.cornerRadius = 20
+//        RVBtnOne.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        return RVBtnOne
+//    }()
+//
+//
+//
+//    let RVBtnTwo: UIButton = {
+//        let RVBtnTwo = UIButton(type: .system)
+//        RVBtnTwo.translatesAutoresizingMaskIntoConstraints = false
+//        RVBtnTwo.setTitleColor(.black , for: .normal)
+//        RVBtnTwo.setTitle("Normal", for: .normal)
+//        //RVBtnOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+//        RVBtnTwo.backgroundColor = .white
+//        RVBtnTwo.layer.cornerRadius = 20
+//        RVBtnTwo.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        return RVBtnTwo
+//    }()
+//
+//
+//    let RVBtnThree: UIButton = {
+//        let RVBtnThree = UIButton(type: .system)
+//        RVBtnThree.translatesAutoresizingMaskIntoConstraints = false
+//        RVBtnThree.setTitleColor(.black , for: .normal)
+//        RVBtnThree.setTitle("Hard", for: .normal)
+//        RVBtnThree.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+//        RVBtnThree.backgroundColor = .white
+//        RVBtnThree.layer.cornerRadius = 20
+//        RVBtnThree.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+//        return RVBtnThree
+//    }()
+    
+    //add firebase firestore
+    let database = Firestore.firestore()
+    
+    //add text label to round view two
+    
+    let label: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = NSLocalizedString("Popular Exercices", comment: "")
+        label.font = .systemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         
         view.backgroundColor = .white
-        
         // Create an instance of UIImageView
            let backgroundImageView = UIImageView(frame: self.view.bounds)
 
@@ -127,6 +143,7 @@ class ExerciseViewController: UIViewController {
 
         ])
         
+        
         //add text label to scroll view slogan text
         
         let SloganLabel: UILabel = {
@@ -156,7 +173,7 @@ class ExerciseViewController: UIViewController {
         let TitleRoundViewOne: UILabel = {
             let TitleRoundViewOne = UILabel()
             TitleRoundViewOne.textColor = .white
-            TitleRoundViewOne.text = NSLocalizedString("Popular Exercices", comment: "")
+            TitleRoundViewOne.text = NSLocalizedString("Stay Healthy", comment: "")
             TitleRoundViewOne.font = .systemFont(ofSize: 35)
             TitleRoundViewOne.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewOne
@@ -174,6 +191,8 @@ class ExerciseViewController: UIViewController {
      
 
         ])
+        
+        
 
       // add rounded sub view to round view one
        
@@ -200,11 +219,32 @@ class ExerciseViewController: UIViewController {
                  roundedViewOneSub.topAnchor.constraint(equalTo: roundViewOne.topAnchor, constant: 100)
             
              ])
+        ////////////////////////
         
+        let TitleRoundViewOnesub: UILabel = {
+            let TitleRoundViewOnesub = UILabel()
+            TitleRoundViewOnesub.textColor = .black
+            TitleRoundViewOnesub.text = NSLocalizedString("Warm Up", comment: "")
+            TitleRoundViewOnesub.font = .systemFont(ofSize: 25)
+            TitleRoundViewOnesub.translatesAutoresizingMaskIntoConstraints = false
+            return TitleRoundViewOnesub
+        }()
         
+        roundedViewOneSub.addSubview(TitleRoundViewOnesub)
+        
+        //add constrains to text label
+        NSLayoutConstraint.activate([
+            TitleRoundViewOnesub.widthAnchor.constraint(equalToConstant: 150),
+            TitleRoundViewOnesub.heightAnchor.constraint(equalToConstant: 70),
+            TitleRoundViewOnesub.leftAnchor.constraint(equalTo: roundedViewOneSub.leftAnchor, constant: 20),
+            TitleRoundViewOnesub.rightAnchor.constraint(equalTo: roundedViewOneSub.rightAnchor,constant: 20),
+            TitleRoundViewOnesub.topAnchor.constraint(equalTo: roundedViewOneSub.topAnchor, constant: 10)
+     
+
+        ])
       
-        
-        // add rounded sub view to round view two
+        //////////////////
+        // add rounded sub two view to round view one
          
           let roundedViewOneSubTwo: UIView = {
               
@@ -230,7 +270,31 @@ class ExerciseViewController: UIViewController {
               
                ])
           
+        ////////////////////////
         
+        let TitleRoundViewTwosub: UILabel = {
+            let TitleRoundViewTwosub = UILabel()
+            TitleRoundViewTwosub.textColor = .black
+            TitleRoundViewTwosub.text = NSLocalizedString("Schedules", comment: "")
+            TitleRoundViewTwosub.font = .systemFont(ofSize: 25)
+            TitleRoundViewTwosub.translatesAutoresizingMaskIntoConstraints = false
+            return TitleRoundViewTwosub
+        }()
+        
+        roundedViewOneSubTwo.addSubview(TitleRoundViewTwosub)
+        
+        //add constrains to text label
+        NSLayoutConstraint.activate([
+            TitleRoundViewTwosub.widthAnchor.constraint(equalToConstant: 150),
+            TitleRoundViewTwosub.heightAnchor.constraint(equalToConstant: 70),
+            TitleRoundViewTwosub.leftAnchor.constraint(equalTo: roundedViewOneSubTwo.leftAnchor, constant: 20),
+            TitleRoundViewTwosub.rightAnchor.constraint(equalTo: roundedViewOneSubTwo.rightAnchor,constant: 20),
+            TitleRoundViewTwosub.topAnchor.constraint(equalTo: roundedViewOneSubTwo.topAnchor, constant: 10)
+     
+
+        ])
+      
+        //////////////////
         
         
         
@@ -246,45 +310,101 @@ class ExerciseViewController: UIViewController {
         roundViewTwo.layer.masksToBounds = true
 
         
-        roundViewTwo.addSubview(RVBtnOne)
-        roundViewTwo.addSubview(RVBtnTwo)
-        roundViewTwo.addSubview(RVBtnThree)
+//        roundViewTwo.addSubview(RVBtnOne)
+//        roundViewTwo.addSubview(RVBtnTwo)
+//        roundViewTwo.addSubview(RVBtnThree)
+//
+//
+//
+//
+//        //btn1 constrains
+//
+//        NSLayoutConstraint.activate([
+//            RVBtnOne.widthAnchor.constraint(equalToConstant: 90),
+//            RVBtnOne.heightAnchor.constraint(equalToConstant: 30),
+//            RVBtnOne.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
+//            RVBtnOne.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 20)
+//        ])
+//
+//        //btn2 constrains
+//
+//        NSLayoutConstraint.activate([
+//            RVBtnTwo.widthAnchor.constraint(equalToConstant: 90),
+//            RVBtnTwo.heightAnchor.constraint(equalToConstant: 30),
+//            RVBtnTwo.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
+//            RVBtnTwo.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 130)
+//        ])
+//
+//
+//        //btn3 constrains
+//
+//        NSLayoutConstraint.activate([
+//            RVBtnThree.widthAnchor.constraint(equalToConstant: 90),
+//            RVBtnThree.heightAnchor.constraint(equalToConstant: 30),
+//            RVBtnThree.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
+//            RVBtnThree.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 240)
+//        ])
+      
+        //////////////////////////////
         
         
+        ////////////////////////
         
-       
-             
+        let TitleRoundViewTwo: UILabel = {
+            let TitleRoundViewTwo = UILabel()
+            TitleRoundViewTwo.textColor = .white
+            TitleRoundViewTwo.text = NSLocalizedString("Activity", comment: "")
+            TitleRoundViewTwo.font = .systemFont(ofSize: 25)
+            TitleRoundViewTwo.translatesAutoresizingMaskIntoConstraints = false
+            return TitleRoundViewTwo
+        }()
         
+        roundViewTwo.addSubview(TitleRoundViewTwo)
         
-        //btn1 constrains
-        
+        //add constrains to text label
         NSLayoutConstraint.activate([
-            RVBtnOne.widthAnchor.constraint(equalToConstant: 90),
-            RVBtnOne.heightAnchor.constraint(equalToConstant: 30),
-            RVBtnOne.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
-            RVBtnOne.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 20)
-        ])
-        
-        //btn2 constrains
-        
-        NSLayoutConstraint.activate([
-            RVBtnTwo.widthAnchor.constraint(equalToConstant: 90),
-            RVBtnTwo.heightAnchor.constraint(equalToConstant: 30),
-            RVBtnTwo.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
-            RVBtnTwo.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 130)
-        ])
-        
-        
-        //btn3 constrains
-        
-        NSLayoutConstraint.activate([
-            RVBtnThree.widthAnchor.constraint(equalToConstant: 90),
-            RVBtnThree.heightAnchor.constraint(equalToConstant: 30),
-            RVBtnThree.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
-            RVBtnThree.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 240)
+            TitleRoundViewTwo.widthAnchor.constraint(equalToConstant: 150),
+            TitleRoundViewTwo.heightAnchor.constraint(equalToConstant: 70),
+            TitleRoundViewTwo.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 20),
+            TitleRoundViewTwo.rightAnchor.constraint(equalTo: roundViewTwo.rightAnchor,constant: 20),
+            TitleRoundViewTwo.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 10)
+     
+
         ])
       
+        //////////////////
         
+       
+        let docRef = database.document("/Schedules/ScheduleData")
+        docRef.addSnapshotListener { [weak self] snapshot, error in
+            guard let data = snapshot?.data(), error == nil else {
+                return
+            }
+            
+            guard let text = data["text"] as? String else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self?.label.text = text
+            }
+        }
+       
+        roundViewTwo.addSubview(label)
+        
+        //add constrains to text label
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalToConstant: 150),
+            label.heightAnchor.constraint(equalToConstant: 70),
+            label.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 30),
+            label.rightAnchor.constraint(equalTo: roundViewTwo.rightAnchor,constant: 20),
+            label.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 100)
+     
+
+        ])
+        
+        
+            ////////////////////////
         
         
         let roundViewThree = UIView()
@@ -324,12 +444,93 @@ class ExerciseViewController: UIViewController {
         ])
         
         
+        //add round view four
+        
+        let roundViewFour = UIView()
+        roundViewFour.backgroundColor = .black
+        stackView.addArrangedSubview(roundViewFour)
+        roundViewFour.translatesAutoresizingMaskIntoConstraints = false
+        roundViewFour.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        roundViewFour.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        roundViewFour.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
+        roundViewFour.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
+        roundViewFour.layer.cornerRadius = 30
+        roundViewFour.layer.masksToBounds = true
+        
+      
+        //add text label to round view four
+        
+        let TitleRoundViewFour: UILabel = {
+            let TitleRoundViewFour = UILabel()
+            TitleRoundViewFour.textColor = .white
+            TitleRoundViewFour.text = NSLocalizedString("BMI Value Measure", comment: "")
+            TitleRoundViewFour.font = .systemFont(ofSize: 35)
+            TitleRoundViewFour.translatesAutoresizingMaskIntoConstraints = false
+            return TitleRoundViewFour
+        }()
+        
+        roundViewFour.addSubview(TitleRoundViewFour)
+        
+        //add constrains to text label
+        NSLayoutConstraint.activate([
+            TitleRoundViewFour.widthAnchor.constraint(equalToConstant: 150),
+            TitleRoundViewFour.heightAnchor.constraint(equalToConstant: 70),
+            TitleRoundViewFour.leftAnchor.constraint(equalTo: roundViewFour.leftAnchor, constant: 20),
+            TitleRoundViewFour.rightAnchor.constraint(equalTo: roundViewFour.rightAnchor,constant: 20),
+            TitleRoundViewFour.topAnchor.constraint(equalTo: roundViewFour.topAnchor, constant: 10)
+     
+
+        ])
         
         
+        //add round view five
         
+        let roundViewFive = UIView()
+        roundViewFive.backgroundColor = .black
+        stackView.addArrangedSubview(roundViewFive)
+        roundViewFive.translatesAutoresizingMaskIntoConstraints = false
+        roundViewFive.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        roundViewFive.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        roundViewFive.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
+        roundViewFive.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
+        roundViewFive.layer.cornerRadius = 30
+        roundViewFive.layer.masksToBounds = true
         
+      
+        //add text label to round view four
         
+        let TitleRoundViewFive: UILabel = {
+            let TitleRoundViewFive = UILabel()
+            TitleRoundViewFive.textColor = .white
+            TitleRoundViewFive.text = NSLocalizedString("Stopwatch", comment: "")
+            TitleRoundViewFive.font = .systemFont(ofSize: 35)
+            TitleRoundViewFive.translatesAutoresizingMaskIntoConstraints = false
+            return TitleRoundViewFive
+        }()
+        
+        roundViewFive.addSubview(TitleRoundViewFive)
+        
+        //add constrains to text label
+        NSLayoutConstraint.activate([
+            TitleRoundViewFive.widthAnchor.constraint(equalToConstant: 150),
+            TitleRoundViewFive.heightAnchor.constraint(equalToConstant: 70),
+            TitleRoundViewFive.leftAnchor.constraint(equalTo: roundViewFive.leftAnchor, constant: 20),
+            TitleRoundViewFive.rightAnchor.constraint(equalTo: roundViewFive.rightAnchor,constant: 20),
+            TitleRoundViewFive.topAnchor.constraint(equalTo: roundViewFive.topAnchor, constant: 10)
+     
+
+        ])
     }
+    
+    @objc func buttonTapped() {
+        let nextViewController = BMIViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+   }
+    
+    
+    
+    
+    
 }
 
 

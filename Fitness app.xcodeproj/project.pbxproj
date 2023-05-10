@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03E5D3FA2A0BB0B400C0F969 /* BMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */; };
 		03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB15662A0A58D700570784 /* AppDelegate.swift */; };
 		03EB15692A0A58D700570784 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB15682A0A58D700570784 /* SceneDelegate.swift */; };
 		03EB156B2A0A58D700570784 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB156A2A0A58D700570784 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
 		03EB15632A0A58D700570784 /* Fitness app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03EB15662A0A58D700570784 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03EB15682A0A58D700570784 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				03EB156F2A0A58D900570784 /* Assets.xcassets */,
 				03EB15712A0A58D900570784 /* LaunchScreen.storyboard */,
 				03EB15742A0A58D900570784 /* Info.plist */,
+				03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03EB156B2A0A58D700570784 /* ViewController.swift in Sources */,
+				03E5D3FA2A0BB0B400C0F969 /* BMIViewController.swift in Sources */,
 				03EB15802A0A5AB600570784 /* RegisterViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
 				03EB15692A0A58D700570784 /* SceneDelegate.swift in Sources */,

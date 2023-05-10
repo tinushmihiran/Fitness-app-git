@@ -5,6 +5,7 @@
 //  Created by Tinush mihiran on 2023-05-09.
 //
 import UIKit
+import FirebaseCore
 
 class HomeViewController: UIViewController {
 
