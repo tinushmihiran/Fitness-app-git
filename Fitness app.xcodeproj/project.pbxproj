@@ -21,6 +21,7 @@
 		03EB158C2A0A62F400570784 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03EB158B2A0A62F400570784 /* FirebaseAuth */; };
 		03EB158E2A0A62F400570784 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 03EB158D2A0A62F400570784 /* FirebaseDatabase */; };
 		03EB15902A0A62F400570784 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03EB158F2A0A62F400570784 /* FirebaseFirestore */; };
+		03F0DDEC2A0CA5C400D64E92 /* ExerciseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0DDEB2A0CA5C400D64E92 /* ExerciseListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		03EB157D2A0A5AB600570784 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		03EB157E2A0A5AB600570784 /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		03EB15872A0A5E7F00570784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		03F0DDEB2A0CA5C400D64E92 /* ExerciseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				03EB15712A0A58D900570784 /* LaunchScreen.storyboard */,
 				03EB15742A0A58D900570784 /* Info.plist */,
 				03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */,
+				03F0DDEB2A0CA5C400D64E92 /* ExerciseListViewController.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				03E5D3FA2A0BB0B400C0F969 /* BMIViewController.swift in Sources */,
 				03EB15802A0A5AB600570784 /* RegisterViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
+				03F0DDEC2A0CA5C400D64E92 /* ExerciseListViewController.swift in Sources */,
 				03EB15692A0A58D700570784 /* SceneDelegate.swift in Sources */,
 				03EB15812A0A5AB600570784 /* ExerciseViewController.swift in Sources */,
 				03EB157F2A0A5AB600570784 /* HomeViewController.swift in Sources */,

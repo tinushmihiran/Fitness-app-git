@@ -12,20 +12,19 @@ import FirebaseFirestore
 
 class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
-   
     
 //    let RVBtnOne: UIButton = {
 //        let RVBtnOne = UIButton(type: .system)
 //        RVBtnOne.translatesAutoresizingMaskIntoConstraints = false
 //        RVBtnOne.setTitleColor(.black , for: .normal)
 //        RVBtnOne.setTitle("Warm Up", for: .normal)
-//       // RVBtnOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+//       RVBtnOne.addTarget(self, action: #selector(buttonTappedbtn1), for: .touchUpInside)
 //        RVBtnOne.backgroundColor = .white
 //        RVBtnOne.layer.cornerRadius = 20
 //        RVBtnOne.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
 //        return RVBtnOne
 //    }()
-//
+
 //
 //
 //    let RVBtnTwo: UIButton = {
@@ -41,17 +40,17 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
 //    }()
 //
 //
-//    let RVBtnThree: UIButton = {
-//        let RVBtnThree = UIButton(type: .system)
-//        RVBtnThree.translatesAutoresizingMaskIntoConstraints = false
-//        RVBtnThree.setTitleColor(.black , for: .normal)
-//        RVBtnThree.setTitle("Hard", for: .normal)
-//        RVBtnThree.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-//        RVBtnThree.backgroundColor = .white
-//        RVBtnThree.layer.cornerRadius = 20
-//        RVBtnThree.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//        return RVBtnThree
-//    }()
+    let RVBtnThree: UIButton = {
+        let RVBtnThree = UIButton(type: .system)
+        RVBtnThree.translatesAutoresizingMaskIntoConstraints = false
+        RVBtnThree.setTitleColor(.black , for: .normal)
+        RVBtnThree.setTitle("Hard", for: .normal)
+        RVBtnThree.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        RVBtnThree.backgroundColor = .white
+        RVBtnThree.layer.cornerRadius = 20
+        RVBtnThree.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        return RVBtnThree
+    }()
     
     //add firebase firestore
     let database = Firestore.firestore()
@@ -71,7 +70,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        
+        navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = .white
         // Create an instance of UIImageView
            let backgroundImageView = UIImageView(frame: self.view.bounds)
@@ -309,23 +308,23 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewTwo.layer.cornerRadius = 30
         roundViewTwo.layer.masksToBounds = true
 
-        
-//        roundViewTwo.addSubview(RVBtnOne)
+//
+//        roundViewFive.addSubview(RVBtnOne)
 //        roundViewTwo.addSubview(RVBtnTwo)
-//        roundViewTwo.addSubview(RVBtnThree)
+        
 //
 //
 //
-//
-//        //btn1 constrains
-//
+        //btn1 constrains
+
 //        NSLayoutConstraint.activate([
-//            RVBtnOne.widthAnchor.constraint(equalToConstant: 90),
-//            RVBtnOne.heightAnchor.constraint(equalToConstant: 30),
-//            RVBtnOne.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
-//            RVBtnOne.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 20)
+//                    RVBtnOne.widthAnchor.constraint(equalToConstant: 90),
+//                    RVBtnOne.heightAnchor.constraint(equalToConstant: 30),
+//                    RVBtnOne.topAnchor.constraint(equalTo: roundViewFive.topAnchor, constant: 20),
+//                    RVBtnOne.leftAnchor.constraint(equalTo: roundViewFive.leftAnchor, constant: 20)
 //        ])
-//
+      
+
 //        //btn2 constrains
 //
 //        NSLayoutConstraint.activate([
@@ -336,14 +335,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
 //        ])
 //
 //
-//        //btn3 constrains
-//
-//        NSLayoutConstraint.activate([
-//            RVBtnThree.widthAnchor.constraint(equalToConstant: 90),
-//            RVBtnThree.heightAnchor.constraint(equalToConstant: 30),
-//            RVBtnThree.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
-//            RVBtnThree.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 240)
-//        ])
+
       
         //////////////////////////////
         
@@ -457,7 +449,16 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewFour.layer.cornerRadius = 30
         roundViewFour.layer.masksToBounds = true
         
+        roundViewFour.addSubview(RVBtnThree)
       
+        //        //btn3 constrains
+     
+                NSLayoutConstraint.activate([
+                    RVBtnThree.widthAnchor.constraint(equalToConstant: 90),
+                    RVBtnThree.heightAnchor.constraint(equalToConstant: 30),
+                    RVBtnThree.topAnchor.constraint(equalTo: roundViewFour.topAnchor, constant: 100),
+                    RVBtnThree.leftAnchor.constraint(equalTo: roundViewFour.leftAnchor, constant: 50)
+                ])
         //add text label to round view four
         
         let TitleRoundViewFour: UILabel = {
@@ -520,15 +521,17 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
      
 
         ])
+     
+   
     }
     
     @objc func buttonTapped() {
-        let nextViewController = BMIViewController()
+        let nextViewController = ExerciseListViewController()
         navigationController?.pushViewController(nextViewController, animated: true)
    }
     
-    
-    
+ 
+
     
     
 }
