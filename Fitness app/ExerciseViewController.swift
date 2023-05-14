@@ -417,7 +417,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         
         let roundViewThree = UIView()
-        roundViewThree.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
+        //roundViewThree.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewThree)
         roundViewThree.translatesAutoresizingMaskIntoConstraints = false
         roundViewThree.heightAnchor.constraint(equalToConstant: 500).isActive = true
@@ -427,6 +427,18 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewThree.layer.cornerRadius = 30
         roundViewThree.layer.masksToBounds = true
         
+        // Add a background image to roundViewThree
+        let backgroundImage = UIImage(named: "img1.png")
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.contentMode = .scaleAspectFill
+        roundViewThree.addSubview(backgroundImageView)
+
+        // Add constraints to the background image view to fit inside the roundViewThree view
+        backgroundImageView.leadingAnchor.constraint(equalTo: roundViewThree.leadingAnchor).isActive = true
+        backgroundImageView.trailingAnchor.constraint(equalTo: roundViewThree.trailingAnchor).isActive = true
+        backgroundImageView.topAnchor.constraint(equalTo: roundViewThree.topAnchor).isActive = true
+        backgroundImageView.bottomAnchor.constraint(equalTo: roundViewThree.bottomAnchor).isActive = true
       
         //add text label to round view Three
         
@@ -458,9 +470,9 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             MealsBtn.widthAnchor.constraint(equalToConstant: 90),
             MealsBtn.heightAnchor.constraint(equalToConstant: 30),
-            MealsBtn.centerXAnchor.constraint(equalTo: TitleRoundViewThree.centerXAnchor),
-            MealsBtn.centerYAnchor.constraint(equalTo: TitleRoundViewThree.centerYAnchor)
-        ])
+            MealsBtn.centerXAnchor.constraint(equalTo: roundViewThree.centerXAnchor),
+            MealsBtn.centerYAnchor.constraint(equalTo: roundViewThree.centerYAnchor)
+               ])
 
         
         //add round view four
@@ -470,8 +482,8 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         stackView.addArrangedSubview(roundViewFour)
         
         roundViewFour.translatesAutoresizingMaskIntoConstraints = false
-        let backgroundImage = UIImage(named: "img1.png")
-        let patternColor = UIColor(patternImage: backgroundImage!)
+        let backgroundImage1 = UIImage(named: "img1.png")
+        let patternColor = UIColor(patternImage: backgroundImage1!)
         
         roundViewFour.backgroundColor = patternColor
         roundViewFour.heightAnchor.constraint(equalToConstant: 300).isActive = true

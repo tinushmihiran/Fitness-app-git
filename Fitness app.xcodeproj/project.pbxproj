@@ -10,6 +10,7 @@
 		0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */; };
 		03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03739AC42A11145E00BEAE33 /* MealsListViewController.swift */; };
 		03739AC82A11149A00BEAE33 /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03739AC72A11149A00BEAE33 /* Meals.swift */; };
+		03739ACB2A113BBF00BEAE33 /* WarmUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03739ACA2A113BBF00BEAE33 /* WarmUp.swift */; };
 		0373B3412A10D599007729D0 /* WarmUpListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B3402A10D599007729D0 /* WarmUpListViewController.swift */; };
 		03B3ADC72A10AC2C00BE01E8 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B3ADC62A10AC2C00BE01E8 /* Exercise.swift */; };
 		03E5D3FA2A0BB0B400C0F969 /* BMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */; };
@@ -33,6 +34,7 @@
 		0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		03739AC42A11145E00BEAE33 /* MealsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsListViewController.swift; sourceTree = "<group>"; };
 		03739AC72A11149A00BEAE33 /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
+		03739ACA2A113BBF00BEAE33 /* WarmUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmUp.swift; sourceTree = "<group>"; };
 		0373B3402A10D599007729D0 /* WarmUpListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmUpListViewController.swift; sourceTree = "<group>"; };
 		03B3ADC62A10AC2C00BE01E8 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				0373B3402A10D599007729D0 /* WarmUpListViewController.swift */,
 				03739AC42A11145E00BEAE33 /* MealsListViewController.swift */,
 				03739AC72A11149A00BEAE33 /* Meals.swift */,
+				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				03EB15802A0A5AB600570784 /* RegisterViewController.swift in Sources */,
 				0373B3412A10D599007729D0 /* WarmUpListViewController.swift in Sources */,
 				0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */,
+				03739ACB2A113BBF00BEAE33 /* WarmUp.swift in Sources */,
 				03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
 				03739AC82A11149A00BEAE33 /* Meals.swift in Sources */,
