@@ -94,7 +94,19 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
       
         navigationController?.setNavigationBarHidden(true, animated: true)
-        view.backgroundColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0)
+        //view.backgroundColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0)
+        
+        // Add a background image
+         let backgroundImage = UIImageView(image: UIImage(named: "img2.png"))
+         backgroundImage.contentMode = .scaleAspectFit // Use scaleAspectFit
+         view.addSubview(backgroundImage)
+         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+         NSLayoutConstraint.activate([
+             backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+             backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+             backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+             backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+         ])
 
      
         
@@ -118,7 +130,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
        
         
         let roundViewOne = UIView()
-        roundViewOne.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
+        roundViewOne.backgroundColor = UIColor(white: 1.0, alpha: 0.50)
         stackView.addArrangedSubview(roundViewOne)
         roundViewOne.translatesAutoresizingMaskIntoConstraints = false
         roundViewOne.heightAnchor.constraint(equalToConstant: 400).isActive = true
@@ -428,8 +440,8 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewThree.layer.masksToBounds = true
         
         // Add a background image to roundViewThree
-        let backgroundImage = UIImage(named: "img1.png")
-        let backgroundImageView = UIImageView(image: backgroundImage)
+        let backgroundImage2 = UIImage(named: "img1.png")
+        let backgroundImageView = UIImageView(image: backgroundImage2)
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.contentMode = .scaleAspectFill
         roundViewThree.addSubview(backgroundImageView)
