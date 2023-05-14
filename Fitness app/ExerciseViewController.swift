@@ -12,41 +12,64 @@ import FirebaseFirestore
 
 class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
+    let MealsBtn: UIButton = {
+        let MealsBtn = UIButton(type: .system)
+        MealsBtn.translatesAutoresizingMaskIntoConstraints = false
+        MealsBtn.setTitleColor(.black , for: .normal)
+        MealsBtn.setTitle("Meals", for: .normal)
+        MealsBtn.addTarget(self, action: #selector(mealsBtntapped), for: .touchUpInside)
+        MealsBtn.backgroundColor = .white
+        MealsBtn.layer.cornerRadius = 20
+        MealsBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        return MealsBtn
+    }()
     
-//    let RVBtnOne: UIButton = {
-//        let RVBtnOne = UIButton(type: .system)
-//        RVBtnOne.translatesAutoresizingMaskIntoConstraints = false
-//        RVBtnOne.setTitleColor(.black , for: .normal)
-//        RVBtnOne.setTitle("Warm Up", for: .normal)
-//       RVBtnOne.addTarget(self, action: #selector(buttonTappedbtn1), for: .touchUpInside)
-//        RVBtnOne.backgroundColor = .white
-//        RVBtnOne.layer.cornerRadius = 20
-//        RVBtnOne.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//        return RVBtnOne
-//    }()
+    
+    let StopwatchBtn: UIButton = {
+        let StopwatchBtn = UIButton(type: .system)
+        StopwatchBtn.translatesAutoresizingMaskIntoConstraints = false
+        StopwatchBtn.setTitleColor(.black , for: .normal)
+        StopwatchBtn.setTitle("Stopwatch", for: .normal)
+        StopwatchBtn.addTarget(self, action: #selector(StopwatchBtntapped), for: .touchUpInside)
+        StopwatchBtn.backgroundColor = .white
+        StopwatchBtn.layer.cornerRadius = 20
+        StopwatchBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        return StopwatchBtn
+    }()
+    
+    let RVBtnOne: UIButton = {
+        let RVBtnOne = UIButton(type: .system)
+        RVBtnOne.translatesAutoresizingMaskIntoConstraints = false
+        RVBtnOne.setTitleColor(.white , for: .normal)
+        RVBtnOne.setTitle("Warm Up", for: .normal)
+       RVBtnOne.addTarget(self, action: #selector(buttonTappedbtn1), for: .touchUpInside)
+        RVBtnOne.backgroundColor = .black
+        RVBtnOne.layer.cornerRadius = 20
+        RVBtnOne.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        return RVBtnOne
+    }()
 
-//
-//
-//    let RVBtnTwo: UIButton = {
-//        let RVBtnTwo = UIButton(type: .system)
-//        RVBtnTwo.translatesAutoresizingMaskIntoConstraints = false
-//        RVBtnTwo.setTitleColor(.black , for: .normal)
-//        RVBtnTwo.setTitle("Normal", for: .normal)
-//        //RVBtnOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-//        RVBtnTwo.backgroundColor = .white
-//        RVBtnTwo.layer.cornerRadius = 20
-//        RVBtnTwo.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//        return RVBtnTwo
-//    }()
-//
-//
+
+    let RVBtnTwo: UIButton = {
+        let RVBtnTwo = UIButton(type: .system)
+        RVBtnTwo.translatesAutoresizingMaskIntoConstraints = false
+        RVBtnTwo.setTitleColor(.black , for: .normal)
+        RVBtnTwo.setTitle("BMI Calculator", for: .normal)
+        RVBtnTwo.addTarget(self, action: #selector(BmiTapped), for: .touchUpInside)
+        RVBtnTwo.backgroundColor = .white
+        RVBtnTwo.layer.cornerRadius = 20
+        RVBtnTwo.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        return RVBtnTwo
+    }()
+
+    
     let RVBtnThree: UIButton = {
         let RVBtnThree = UIButton(type: .system)
         RVBtnThree.translatesAutoresizingMaskIntoConstraints = false
-        RVBtnThree.setTitleColor(.black , for: .normal)
-        RVBtnThree.setTitle("Hard", for: .normal)
+        RVBtnThree.setTitleColor(.white , for: .normal)
+        RVBtnThree.setTitle("Exercises", for: .normal)
         RVBtnThree.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        RVBtnThree.backgroundColor = .white
+        RVBtnThree.backgroundColor = .black
         RVBtnThree.layer.cornerRadius = 20
         RVBtnThree.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         return RVBtnThree
@@ -71,21 +94,9 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
       
         navigationController?.setNavigationBarHidden(true, animated: true)
-        view.backgroundColor = .white
-        // Create an instance of UIImageView
-           let backgroundImageView = UIImageView(frame: self.view.bounds)
+        view.backgroundColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0)
 
-           // Set the image property of the UIImageView
-           backgroundImageView.image = UIImage(named: "img2")
-
-           // Set the content mode to scale the image to fit the view's bounds
-           backgroundImageView.contentMode = .scaleAspectFill
-
-           // Add the UIImageView as a subview of the view controller's view
-           self.view.addSubview(backgroundImageView)
-
-           // Send the UIImageView to the back so that it appears behind the other views
-           self.view.sendSubviewToBack(backgroundImageView)
+     
         
         let scrollView = UIScrollView()
         view.addSubview(scrollView)
@@ -107,7 +118,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
        
         
         let roundViewOne = UIView()
-        roundViewOne.backgroundColor = .black
+        roundViewOne.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewOne)
         roundViewOne.translatesAutoresizingMaskIntoConstraints = false
         roundViewOne.heightAnchor.constraint(equalToConstant: 400).isActive = true
@@ -116,7 +127,6 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewOne.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0).isActive = true
         roundViewOne.layer.cornerRadius = 70
         roundViewOne.layer.masksToBounds = true
-        backgroundImageView.alpha = 0.99
         
         //add text label to scroll view
         
@@ -199,14 +209,29 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             
             let roundedViewOneSub = UIView()
             roundedViewOneSub.layer.cornerRadius = 30
-            roundedViewOneSub.backgroundColor = .white
             roundedViewOneSub.translatesAutoresizingMaskIntoConstraints = false
-            //view.alpha = 0.5
+            
+            let backgroundImage = UIImage(named: "img1")
+            let backgroundImageView = UIImageView(image: backgroundImage)
+            backgroundImageView.contentMode = .scaleAspectFill
+            backgroundImageView.layer.cornerRadius = 20
+            backgroundImageView.clipsToBounds = true
+            backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+            roundedViewOneSub.addSubview(backgroundImageView)
+            roundedViewOneSub.sendSubviewToBack(backgroundImageView)
+            
+            NSLayoutConstraint.activate([
+                backgroundImageView.topAnchor.constraint(equalTo: roundedViewOneSub.topAnchor),
+                backgroundImageView.leadingAnchor.constraint(equalTo: roundedViewOneSub.leadingAnchor),
+                backgroundImageView.trailingAnchor.constraint(equalTo: roundedViewOneSub.trailingAnchor),
+                backgroundImageView.bottomAnchor.constraint(equalTo: roundedViewOneSub.bottomAnchor)
+            ])
+            
             return roundedViewOneSub
-           
         }()
         
         roundViewOne.addSubview(roundedViewOneSub)
+        
         
         
         // sub roundview one constrains
@@ -222,7 +247,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         let TitleRoundViewOnesub: UILabel = {
             let TitleRoundViewOnesub = UILabel()
-            TitleRoundViewOnesub.textColor = .black
+            TitleRoundViewOnesub.textColor = .white
             TitleRoundViewOnesub.text = NSLocalizedString("Warm Up", comment: "")
             TitleRoundViewOnesub.font = .systemFont(ofSize: 25)
             TitleRoundViewOnesub.translatesAutoresizingMaskIntoConstraints = false
@@ -230,6 +255,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         }()
         
         roundedViewOneSub.addSubview(TitleRoundViewOnesub)
+        roundedViewOneSub.addSubview(RVBtnOne)
         
         //add constrains to text label
         NSLayoutConstraint.activate([
@@ -252,6 +278,21 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             roundedViewOneSubTwo.backgroundColor = .white
             roundedViewOneSubTwo.translatesAutoresizingMaskIntoConstraints = false
               //view.alpha = 0.5
+            let backgroundImage = UIImage(named: "img2")
+            let backgroundImageView = UIImageView(image: backgroundImage)
+            backgroundImageView.contentMode = .scaleAspectFill
+            backgroundImageView.layer.cornerRadius = 20
+            backgroundImageView.clipsToBounds = true
+            backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+            roundedViewOneSubTwo.addSubview(backgroundImageView)
+            roundedViewOneSubTwo.sendSubviewToBack(backgroundImageView)
+            
+            NSLayoutConstraint.activate([
+                backgroundImageView.topAnchor.constraint(equalTo: roundedViewOneSubTwo.topAnchor),
+                backgroundImageView.leadingAnchor.constraint(equalTo: roundedViewOneSubTwo.leadingAnchor),
+                backgroundImageView.trailingAnchor.constraint(equalTo: roundedViewOneSubTwo.trailingAnchor),
+                backgroundImageView.bottomAnchor.constraint(equalTo: roundedViewOneSubTwo.bottomAnchor)
+            ])
               return roundedViewOneSubTwo
              
           }()
@@ -268,13 +309,13 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
                 roundedViewOneSubTwo.topAnchor.constraint(equalTo: roundViewOne.topAnchor, constant: 100)
               
                ])
-          
+                roundedViewOneSubTwo.addSubview(RVBtnThree)
         ////////////////////////
         
         let TitleRoundViewTwosub: UILabel = {
             let TitleRoundViewTwosub = UILabel()
-            TitleRoundViewTwosub.textColor = .black
-            TitleRoundViewTwosub.text = NSLocalizedString("Schedules", comment: "")
+            TitleRoundViewTwosub.textColor = .white
+            TitleRoundViewTwosub.text = NSLocalizedString("All Exercises", comment: "")
             TitleRoundViewTwosub.font = .systemFont(ofSize: 25)
             TitleRoundViewTwosub.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewTwosub
@@ -298,7 +339,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         
         let roundViewTwo = UIView()
-        roundViewTwo.backgroundColor = .black
+        roundViewTwo.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewTwo)
         roundViewTwo.translatesAutoresizingMaskIntoConstraints = false
         roundViewTwo.heightAnchor.constraint(equalToConstant: 400).isActive = true
@@ -308,39 +349,17 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewTwo.layer.cornerRadius = 30
         roundViewTwo.layer.masksToBounds = true
 
-//
-//        roundViewFive.addSubview(RVBtnOne)
-//        roundViewTwo.addSubview(RVBtnTwo)
-        
-//
-//
-//
+
         //btn1 constrains
-
-//        NSLayoutConstraint.activate([
-//                    RVBtnOne.widthAnchor.constraint(equalToConstant: 90),
-//                    RVBtnOne.heightAnchor.constraint(equalToConstant: 30),
-//                    RVBtnOne.topAnchor.constraint(equalTo: roundViewFive.topAnchor, constant: 20),
-//                    RVBtnOne.leftAnchor.constraint(equalTo: roundViewFive.leftAnchor, constant: 20)
-//        ])
-      
-
-//        //btn2 constrains
-//
-//        NSLayoutConstraint.activate([
-//            RVBtnTwo.widthAnchor.constraint(equalToConstant: 90),
-//            RVBtnTwo.heightAnchor.constraint(equalToConstant: 30),
-//            RVBtnTwo.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 20),
-//            RVBtnTwo.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 130)
-//        ])
-//
-//
+        NSLayoutConstraint.activate([
+            RVBtnOne.widthAnchor.constraint(equalToConstant: 90),
+            RVBtnOne.heightAnchor.constraint(equalToConstant: 30),
+            RVBtnOne.centerXAnchor.constraint(equalTo: roundedViewOneSub.centerXAnchor),
+            RVBtnOne.centerYAnchor.constraint(equalTo: roundedViewOneSub.centerYAnchor)
+        ])
 
       
-        //////////////////////////////
-        
-        
-        ////////////////////////
+
         
         let TitleRoundViewTwo: UILabel = {
             let TitleRoundViewTwo = UILabel()
@@ -364,8 +383,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
         ])
       
-        //////////////////
-        
+      
        
         let docRef = database.document("/Schedules/ScheduleData")
         docRef.addSnapshotListener { [weak self] snapshot, error in
@@ -396,11 +414,10 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         ])
         
         
-            ////////////////////////
         
         
         let roundViewThree = UIView()
-        roundViewThree.backgroundColor = .black
+        roundViewThree.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewThree)
         roundViewThree.translatesAutoresizingMaskIntoConstraints = false
         roundViewThree.heightAnchor.constraint(equalToConstant: 500).isActive = true
@@ -435,13 +452,28 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
         ])
         
+        roundViewThree.addSubview(MealsBtn)
+        
+        //add constrains to diet meal btn
+        NSLayoutConstraint.activate([
+            MealsBtn.widthAnchor.constraint(equalToConstant: 90),
+            MealsBtn.heightAnchor.constraint(equalToConstant: 30),
+            MealsBtn.centerXAnchor.constraint(equalTo: TitleRoundViewThree.centerXAnchor),
+            MealsBtn.centerYAnchor.constraint(equalTo: TitleRoundViewThree.centerYAnchor)
+        ])
+
         
         //add round view four
         
         let roundViewFour = UIView()
-        roundViewFour.backgroundColor = .black
+        roundViewFour.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewFour)
+        
         roundViewFour.translatesAutoresizingMaskIntoConstraints = false
+        let backgroundImage = UIImage(named: "img1.png")
+        let patternColor = UIColor(patternImage: backgroundImage!)
+        
+        roundViewFour.backgroundColor = patternColor
         roundViewFour.heightAnchor.constraint(equalToConstant: 300).isActive = true
         roundViewFour.widthAnchor.constraint(equalToConstant: 350).isActive = true
         roundViewFour.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
@@ -449,15 +481,25 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewFour.layer.cornerRadius = 30
         roundViewFour.layer.masksToBounds = true
         
-        roundViewFour.addSubview(RVBtnThree)
+        roundViewFour.addSubview(RVBtnTwo)
+            
+        //btn2 constrains
+
+        NSLayoutConstraint.activate([
+            RVBtnTwo.widthAnchor.constraint(equalToConstant: 90),
+            RVBtnTwo.heightAnchor.constraint(equalToConstant: 30),
+            RVBtnTwo.centerXAnchor.constraint(equalTo: roundViewFour.centerXAnchor),
+            RVBtnTwo.centerYAnchor.constraint(equalTo: roundViewFour.centerYAnchor)
+        ])
+
       
-        //        //btn3 constrains
+                //btn3 constrains
      
                 NSLayoutConstraint.activate([
                     RVBtnThree.widthAnchor.constraint(equalToConstant: 90),
                     RVBtnThree.heightAnchor.constraint(equalToConstant: 30),
-                    RVBtnThree.topAnchor.constraint(equalTo: roundViewFour.topAnchor, constant: 100),
-                    RVBtnThree.leftAnchor.constraint(equalTo: roundViewFour.leftAnchor, constant: 50)
+                    RVBtnThree.topAnchor.constraint(equalTo: roundedViewOneSubTwo.topAnchor, constant: 100),
+                    RVBtnThree.leftAnchor.constraint(equalTo: roundedViewOneSubTwo.leftAnchor, constant: 50)
                 ])
         //add text label to round view four
         
@@ -487,7 +529,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         //add round view five
         
         let roundViewFive = UIView()
-        roundViewFive.backgroundColor = .black
+        roundViewFive.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewFive)
         roundViewFive.translatesAutoresizingMaskIntoConstraints = false
         roundViewFive.heightAnchor.constraint(equalToConstant: 300).isActive = true
@@ -510,7 +552,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         }()
         
         roundViewFive.addSubview(TitleRoundViewFive)
-        
+        roundViewFive.addSubview(StopwatchBtn)
         //add constrains to text label
         NSLayoutConstraint.activate([
             TitleRoundViewFive.widthAnchor.constraint(equalToConstant: 150),
@@ -521,7 +563,17 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
      
 
         ])
-     
+        
+        
+        //stopwatch btn constrains
+
+        NSLayoutConstraint.activate([
+            StopwatchBtn.widthAnchor.constraint(equalToConstant: 90),
+            StopwatchBtn.heightAnchor.constraint(equalToConstant: 30),
+            StopwatchBtn.centerXAnchor.constraint(equalTo: roundViewFive.centerXAnchor),
+            StopwatchBtn.centerYAnchor.constraint(equalTo: roundViewFive.centerYAnchor)
+        ])
+
    
     }
     
@@ -530,9 +582,25 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         navigationController?.pushViewController(nextViewController, animated: true)
    }
     
- 
-
+    @objc func buttonTappedbtn1() {
+        let nextViewController = WarmUpListViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+   }
     
+    @objc func BmiTapped() {
+        let nextViewController = BMIViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+   }
+    
+    @objc func StopwatchBtntapped() {
+        let nextViewController = StopwatchViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+   }
+    
+    @objc func mealsBtntapped() {
+        let nextViewController = MealsListViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+   }
     
 }
 
