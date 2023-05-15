@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */; };
 		0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */; };
 		03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03739AC42A11145E00BEAE33 /* MealsListViewController.swift */; };
 		03739AC82A11149A00BEAE33 /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03739AC72A11149A00BEAE33 /* Meals.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewController.swift; sourceTree = "<group>"; };
 		0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		03739AC42A11145E00BEAE33 /* MealsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsListViewController.swift; sourceTree = "<group>"; };
 		03739AC72A11149A00BEAE33 /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				03739AC42A11145E00BEAE33 /* MealsListViewController.swift */,
 				03739AC72A11149A00BEAE33 /* Meals.swift */,
 				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
+				03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				03739ACB2A113BBF00BEAE33 /* WarmUp.swift in Sources */,
 				03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
+				03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */,
 				03739AC82A11149A00BEAE33 /* Meals.swift in Sources */,
 				03B3ADC72A10AC2C00BE01E8 /* Exercise.swift in Sources */,
 				03F0DDEC2A0CA5C400D64E92 /* ExerciseListViewController.swift in Sources */,

@@ -12,6 +12,7 @@ struct Exercise {
     let type: String
     let muscle: String
     let difficulty: String
+    //var imageUrl: String
     
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data()
@@ -19,5 +20,6 @@ struct Exercise {
         type = snapshotValue["type"] as! String
         muscle = snapshotValue["muscle"] as! String
         difficulty = snapshotValue["difficulty"] as! String
+        //imageUrl = snapshotValue["imageUrl"] as! String
     }
 }

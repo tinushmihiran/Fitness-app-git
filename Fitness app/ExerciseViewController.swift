@@ -133,7 +133,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewOne.backgroundColor = .white
         stackView.addArrangedSubview(roundViewOne)
         roundViewOne.translatesAutoresizingMaskIntoConstraints = false
-        roundViewOne.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        roundViewOne.heightAnchor.constraint(equalToConstant: 350).isActive = true
         roundViewOne.widthAnchor.constraint(equalToConstant: 50).isActive = true
         roundViewOne.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
         roundViewOne.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0).isActive = true
@@ -248,10 +248,10 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         // sub roundview one constrains
              NSLayoutConstraint.activate([
-                 roundedViewOneSub.widthAnchor.constraint(equalToConstant: 150),
+                 roundedViewOneSub.widthAnchor.constraint(equalToConstant: 175),
                  roundedViewOneSub.heightAnchor.constraint(equalToConstant: 250),
-                 roundedViewOneSub.leftAnchor.constraint(equalTo: roundViewOne.leftAnchor, constant: 20),
-                roundViewOne.rightAnchor.constraint(equalTo: roundViewOne.rightAnchor,constant: 20),
+                 roundedViewOneSub.leftAnchor.constraint(equalTo: roundViewOne.leftAnchor, constant: 0),
+                roundViewOne.rightAnchor.constraint(equalTo: roundViewOne.rightAnchor,constant: 5),
                  roundedViewOneSub.topAnchor.constraint(equalTo: roundViewOne.topAnchor, constant: 100)
             
              ])
@@ -317,7 +317,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
                 roundedViewOneSubTwo.widthAnchor.constraint(equalToConstant: 150),
                 roundedViewOneSubTwo.heightAnchor.constraint(equalToConstant: 250),
                 roundedViewOneSubTwo.leftAnchor.constraint(equalTo: roundViewOne.leftAnchor, constant: 190),
-                roundedViewOneSubTwo.rightAnchor.constraint(equalTo: roundViewOne.rightAnchor,constant: -20),
+                roundedViewOneSubTwo.rightAnchor.constraint(equalTo: roundViewOne.rightAnchor,constant: 0),
                 roundedViewOneSubTwo.topAnchor.constraint(equalTo: roundViewOne.topAnchor, constant: 100)
               
                ])
