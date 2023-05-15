@@ -130,7 +130,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
        
         
         let roundViewOne = UIView()
-        roundViewOne.backgroundColor = UIColor(white: 1.0, alpha: 0.50)
+        roundViewOne.backgroundColor = .white
         stackView.addArrangedSubview(roundViewOne)
         roundViewOne.translatesAutoresizingMaskIntoConstraints = false
         roundViewOne.heightAnchor.constraint(equalToConstant: 400).isActive = true
@@ -146,7 +146,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             let NameLabel = UILabel()
             NameLabel.textColor = .white
             NameLabel.text = NSLocalizedString("Hi,Tinush", comment: "")
-            NameLabel.font = .systemFont(ofSize: 35)
+            NameLabel.font = .boldSystemFont(ofSize: 35)
             NameLabel.translatesAutoresizingMaskIntoConstraints = false
             return NameLabel
         }()
@@ -193,9 +193,9 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         let TitleRoundViewOne: UILabel = {
             let TitleRoundViewOne = UILabel()
-            TitleRoundViewOne.textColor = .white
+            TitleRoundViewOne.textColor = .black
             TitleRoundViewOne.text = NSLocalizedString("Stay Healthy", comment: "")
-            TitleRoundViewOne.font = .systemFont(ofSize: 35)
+            TitleRoundViewOne.font = .boldSystemFont(ofSize: 35)
             TitleRoundViewOne.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewOne
         }()
@@ -261,7 +261,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             let TitleRoundViewOnesub = UILabel()
             TitleRoundViewOnesub.textColor = .white
             TitleRoundViewOnesub.text = NSLocalizedString("Warm Up", comment: "")
-            TitleRoundViewOnesub.font = .systemFont(ofSize: 25)
+            TitleRoundViewOnesub.font = .boldSystemFont(ofSize: 25)
             TitleRoundViewOnesub.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewOnesub
         }()
@@ -328,7 +328,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             let TitleRoundViewTwosub = UILabel()
             TitleRoundViewTwosub.textColor = .white
             TitleRoundViewTwosub.text = NSLocalizedString("All Exercises", comment: "")
-            TitleRoundViewTwosub.font = .systemFont(ofSize: 25)
+            TitleRoundViewTwosub.font = .boldSystemFont(ofSize: 25)
             TitleRoundViewTwosub.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewTwosub
         }()
@@ -351,7 +351,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         
         let roundViewTwo = UIView()
-        roundViewTwo.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
+        roundViewTwo.backgroundColor = .white
         stackView.addArrangedSubview(roundViewTwo)
         roundViewTwo.translatesAutoresizingMaskIntoConstraints = false
         roundViewTwo.heightAnchor.constraint(equalToConstant: 400).isActive = true
@@ -375,9 +375,9 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         let TitleRoundViewTwo: UILabel = {
             let TitleRoundViewTwo = UILabel()
-            TitleRoundViewTwo.textColor = .white
+            TitleRoundViewTwo.textColor = .black
             TitleRoundViewTwo.text = NSLocalizedString("Activity", comment: "")
-            TitleRoundViewTwo.font = .systemFont(ofSize: 25)
+            TitleRoundViewTwo.font = .boldSystemFont(ofSize: 25)
             TitleRoundViewTwo.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewTwo
         }()
@@ -458,7 +458,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             let TitleRoundViewThree = UILabel()
             TitleRoundViewThree.textColor = .white
             TitleRoundViewThree.text = NSLocalizedString("Diet Meals", comment: "")
-            TitleRoundViewThree.font = .systemFont(ofSize: 35)
+            TitleRoundViewThree.font = .boldSystemFont(ofSize: 35)
             TitleRoundViewThree.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewThree
         }()
@@ -531,7 +531,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             let TitleRoundViewFour = UILabel()
             TitleRoundViewFour.textColor = .white
             TitleRoundViewFour.text = NSLocalizedString("BMI Value Measure", comment: "")
-            TitleRoundViewFour.font = .systemFont(ofSize: 35)
+            TitleRoundViewFour.font = .boldSystemFont(ofSize: 35)
             TitleRoundViewFour.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewFour
         }()
@@ -570,7 +570,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             let TitleRoundViewFive = UILabel()
             TitleRoundViewFive.textColor = .white
             TitleRoundViewFive.text = NSLocalizedString("Stopwatch", comment: "")
-            TitleRoundViewFive.font = .systemFont(ofSize: 35)
+            TitleRoundViewFive.font = .boldSystemFont(ofSize: 35)
             TitleRoundViewFive.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewFive
         }()
