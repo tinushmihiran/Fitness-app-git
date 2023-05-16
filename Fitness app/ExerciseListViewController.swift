@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-//import FirebaseStorage
+
 
 class ExerciseListViewController: UIViewController {
     
@@ -21,6 +21,25 @@ class ExerciseListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        // Create the "Go Back" button
+        let goBackButton = UIButton(type: .system)
+        goBackButton.setTitle("< Back", for: .normal)
+        goBackButton.setTitleColor(.white, for: .normal)
+        goBackButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        goBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        goBackButton.translatesAutoresizingMaskIntoConstraints = false
+
+       
+        // Add the "Go Back" button to the view
+               view.addSubview(goBackButton)
+        NSLayoutConstraint.activate([
+            goBackButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            goBackButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            goBackButton.widthAnchor.constraint(equalToConstant: 80),
+            goBackButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+
         // Fetch the data from Firestore
         db.collection("exercise").getDocuments() { (querySnapshot, error) in
             if let error = error {
@@ -36,7 +55,14 @@ class ExerciseListViewController: UIViewController {
                 print("Fetched \(self.exercises.count) exercises")
             }
         }
+        
+        
+        
     }
+    
+    @objc func goBack() {
+        navigationController?.popViewController(animated: true)
+       }
     
     func addCardViews() {
         var yPosition: CGFloat = 100.0
@@ -47,7 +73,7 @@ class ExerciseListViewController: UIViewController {
             cardView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             cardView.layer.shadowRadius = 2.0
             cardView.layer.shadowOpacity = 0.2
-//            
+            
 //            let exerciseImageRef = Storage.storage().reference().child(exercise.imagePath)
 //                  exerciseImageRef.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
 //                      if let error = error {

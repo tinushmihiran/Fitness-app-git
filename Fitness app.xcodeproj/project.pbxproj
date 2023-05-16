@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0358E1122A136B1500ED554A /* MealsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358E1112A136B1500ED554A /* MealsDetailViewController.swift */; };
 		03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */; };
 		0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */; };
 		03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03739AC42A11145E00BEAE33 /* MealsListViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0358E1112A136B1500ED554A /* MealsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsDetailViewController.swift; sourceTree = "<group>"; };
 		03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewController.swift; sourceTree = "<group>"; };
 		0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		03739AC42A11145E00BEAE33 /* MealsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsListViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				03739AC72A11149A00BEAE33 /* Meals.swift */,
 				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
 				03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */,
+				0358E1112A136B1500ED554A /* MealsDetailViewController.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				03EB156B2A0A58D700570784 /* ViewController.swift in Sources */,
 				03E5D3FA2A0BB0B400C0F969 /* BMIViewController.swift in Sources */,
 				03EB15802A0A5AB600570784 /* RegisterViewController.swift in Sources */,
+				0358E1122A136B1500ED554A /* MealsDetailViewController.swift in Sources */,
 				0373B3412A10D599007729D0 /* WarmUpListViewController.swift in Sources */,
 				0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */,
 				03739ACB2A113BBF00BEAE33 /* WarmUp.swift in Sources */,
