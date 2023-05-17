@@ -7,16 +7,16 @@
 
 import Firebase
 
-struct WarmUp {
+struct WARMUP {
     let name: String
-    let description: String
+    let WarmUpdescription: String
     let duration: String
     let repetitions: String
     
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data()
         name = snapshotValue["name"] as! String
-        description = snapshotValue["description"] as! String
+        WarmUpdescription = snapshotValue["WarmUpdescription"] as! String
         duration = snapshotValue["duration"] as! String
         repetitions = snapshotValue["repetitions"] as! String
     }

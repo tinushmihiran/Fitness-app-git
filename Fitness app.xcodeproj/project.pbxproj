@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0358E1122A136B1500ED554A /* MealsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358E1112A136B1500ED554A /* MealsDetailViewController.swift */; };
-		0358E1162A1383DA00ED554A /* WarmUpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358E1152A1383DA00ED554A /* WarmUpDetailViewController.swift */; };
 		0358E1252A13E55E00ED554A /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */; };
 		03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */; };
 		0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */; };
@@ -36,7 +35,6 @@
 
 /* Begin PBXFileReference section */
 		0358E1112A136B1500ED554A /* MealsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsDetailViewController.swift; sourceTree = "<group>"; };
-		0358E1152A1383DA00ED554A /* WarmUpDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmUpDetailViewController.swift; sourceTree = "<group>"; };
 		0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
 		03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewController.swift; sourceTree = "<group>"; };
 		0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
 				03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */,
 				0358E1112A136B1500ED554A /* MealsDetailViewController.swift */,
-				0358E1152A1383DA00ED554A /* WarmUpDetailViewController.swift */,
 				0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */,
 			);
 			path = "Fitness app";
@@ -206,7 +203,6 @@
 				0358E1122A136B1500ED554A /* MealsDetailViewController.swift in Sources */,
 				0373B3412A10D599007729D0 /* WarmUpListViewController.swift in Sources */,
 				0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */,
-				0358E1162A1383DA00ED554A /* WarmUpDetailViewController.swift in Sources */,
 				03739ACB2A113BBF00BEAE33 /* WarmUp.swift in Sources */,
 				03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
