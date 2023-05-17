@@ -12,6 +12,18 @@ import FirebaseFirestore
 
 class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
+    let ActivityBtn: UIButton = {
+        let ActivityBtn = UIButton(type: .system)
+        ActivityBtn.translatesAutoresizingMaskIntoConstraints = false
+        ActivityBtn.setTitleColor(.white , for: .normal)
+        ActivityBtn.setTitle("Activity", for: .normal)
+        ActivityBtn.addTarget(self, action: #selector(ActivityBtntapped), for: .touchUpInside)
+        ActivityBtn.backgroundColor = .black
+        ActivityBtn.layer.cornerRadius = 20
+        ActivityBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        return ActivityBtn
+    }()
+    
     let MealsBtn: UIButton = {
         let MealsBtn = UIButton(type: .system)
         MealsBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -400,7 +412,16 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
         ])
       
-      
+        roundViewTwo.addSubview(ActivityBtn)
+        
+        //btn1 activity
+        NSLayoutConstraint.activate([
+            ActivityBtn.widthAnchor.constraint(equalToConstant: 90),
+            ActivityBtn.heightAnchor.constraint(equalToConstant: 50),
+            ActivityBtn.centerXAnchor.constraint(equalTo: TitleRoundViewTwo.centerXAnchor),
+            ActivityBtn.centerYAnchor.constraint(equalTo: TitleRoundViewTwo.centerYAnchor)
+           
+        ])
        
         let docRef = database.document("/Schedules/ScheduleData")
         docRef.addSnapshotListener { [weak self] snapshot, error in
@@ -641,6 +662,11 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
     
     @objc func mealsBtntapped() {
         let nextViewController = MealsListViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+   }
+    
+    @objc func ActivityBtntapped() {
+        let nextViewController = ActivityDetailViewController()
         navigationController?.pushViewController(nextViewController, animated: true)
    }
     
