@@ -451,23 +451,57 @@ class ActivityDetailViewController: UIViewController, CLLocationManagerDelegate 
                 caloriesLabel.text = "\(caloriesBurned) kcal"
             }
 
-            // Save data to Firestore
-            if let userId = Auth.auth().currentUser?.uid {
-                let db = Firestore.firestore()
-                let activityRef = db.collection("activities").document(userId)
+        // Fetch and display stored activity data
+        if let userId = Auth.auth().currentUser?.uid {
+            let db = Firestore.firestore()
+            let activityRef = db.collection("activities").document(userId)
 
-                if let steps = pedometerData?.numberOfSteps,
-                    let distance = pedometerData?.distance,
-                    let calories = pedometerData?.floorsAscended {
+            activityRef.getDocument { [weak self] (document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()
 
-                    let stepsValue = steps.intValue
-                    let totalDistanceInKm = distance.doubleValue / 1000
-                    let caloriesBurned = calories.doubleValue * 10
+                    // Retrieve previous values from Firestore
+                    var totalSteps = 0
+                    if let steps = data?["steps"] as? Int {
+                        totalSteps += steps
+                    }
 
+                    var totalDistance = 0.0
+                    if let distance = data?["distance"] as? Double {
+                        totalDistance += distance
+                    }
+
+                    var totalCalories = 0.0
+                    if let calories = data?["calories"] as? Double {
+                        totalCalories += calories
+                    }
+
+                    // Add new values to the totals
+                    if let steps = pedometerData?.numberOfSteps {
+                        totalSteps += steps.intValue
+                    }
+
+                    if let distance = pedometerData?.distance {
+                        let distanceInKm = distance.doubleValue / 1000
+                        totalDistance += distanceInKm
+                    }
+
+                    if let calories = pedometerData?.floorsAscended {
+                        let caloriesBurned = calories.doubleValue * 10
+                        totalCalories += caloriesBurned
+                    }
+
+                    // Update the labels with the new totals
+                    self?.stepsLabel.text = "\(totalSteps)"
+                    let formattedDistance = String(format: "%.2f", totalDistance)
+                    self?.distanceLabel.text = "\(formattedDistance) km"
+                    self?.caloriesLabel.text = "\(totalCalories) kcal"
+
+                    // Save the updated totals to Firestore
                     let activityData: [String: Any] = [
-                        "steps": stepsValue,
-                        "distance": totalDistanceInKm,
-                        "calories": caloriesBurned
+                        "steps": totalSteps,
+                        "distance": totalDistance,
+                        "calories": totalCalories
                     ]
 
                     activityRef.setData(activityData) { error in
@@ -477,8 +511,11 @@ class ActivityDetailViewController: UIViewController, CLLocationManagerDelegate 
                             print("Activity data saved to Firestore")
                         }
                     }
+                } else {
+                    print("Activity document does not exist")
                 }
             }
+        }
         }
     
     
