@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031043272A15DBE00068781D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031043262A15DBE00068781D /* ProfileViewController.swift */; };
+		0310432A2A15E9AC0068781D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031043292A15E9AC0068781D /* WelcomeViewController.swift */; };
+		0310432D2A15EB310068781D /* ProfileDetailGetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */; };
 		0358E1252A13E55E00ED554A /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */; };
 		03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */; };
 		0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */; };
@@ -33,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		031043262A15DBE00068781D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		031043292A15E9AC0068781D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailGetViewController.swift; sourceTree = "<group>"; };
 		0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
 		03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewController.swift; sourceTree = "<group>"; };
 		0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 		03EB15652A0A58D700570784 /* Fitness app */ = {
 			isa = PBXGroup;
 			children = (
+				031043292A15E9AC0068781D /* WelcomeViewController.swift */,
 				03EB15872A0A5E7F00570784 /* GoogleService-Info.plist */,
 				03EB157E2A0A5AB600570784 /* ExerciseViewController.swift */,
 				03EB157C2A0A5AB600570784 /* HomeViewController.swift */,
@@ -111,6 +118,8 @@
 				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
 				03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */,
 				0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */,
+				031043262A15DBE00068781D /* ProfileViewController.swift */,
+				0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -201,7 +210,10 @@
 				0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */,
 				03739ACB2A113BBF00BEAE33 /* WarmUp.swift in Sources */,
 				03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */,
+				031043272A15DBE00068781D /* ProfileViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
+				0310432A2A15E9AC0068781D /* WelcomeViewController.swift in Sources */,
+				0310432D2A15EB310068781D /* ProfileDetailGetViewController.swift in Sources */,
 				03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */,
 				03739AC82A11149A00BEAE33 /* Meals.swift in Sources */,
 				0358E1252A13E55E00ED554A /* ActivityDetailViewController.swift in Sources */,

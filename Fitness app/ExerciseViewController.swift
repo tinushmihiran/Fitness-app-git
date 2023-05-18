@@ -140,6 +140,20 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
        
+        let profileImageView = UIImageView(image: UIImage(named: "profile"))
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        scrollView.addSubview(profileImageView)
+        profileImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 55).isActive = true
+        profileImageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 55).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        // Add tap gesture recognizer
+        profileImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
+        profileImageView.addGestureRecognizer(tapGestureRecognizer)
         
         let roundViewOne = UIView()
         roundViewOne.backgroundColor = .white
@@ -669,6 +683,12 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         let nextViewController = ActivityDetailViewController()
         navigationController?.pushViewController(nextViewController, animated: true)
    }
+    
+    @objc func profileImageTapped() {
+        let nextViewController = ProfileViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+  
     
 }
 

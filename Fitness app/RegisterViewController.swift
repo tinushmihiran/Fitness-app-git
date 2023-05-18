@@ -83,73 +83,7 @@
                 navigationController?.pushViewController(newViewController, animated: true)
             }
         
-//        @objc func buttonTapped3() {
-//
-//            guard let email = RegisterEmail.text, !email .isEmpty,
-//                   let password = RegisterPassword.text, !password .isEmpty else{
-//                    print("missing field data")
-//                    return
-//
-//                  }
-//
-//            Firebase.Auth.auth().createUser(withEmail: email, password: password) {[weak self] result, error in
-//
-//                guard let strongSelf = self else {
-//
-//                    return
-//                }
-//                guard error == nil else {
-//                    print("Account Creation Failed")
-//                    return
-//                }
-//                print("Account Creation Success")
-//
-//            }
-//        }
 
-        
-//        @objc func buttonTapped3() {
-//            guard let email = RegisterEmail.text, !email.isEmpty, email.contains("@"), email.contains(".") else {
-//                // Show an error message for an invalid email
-//                showErrorAlertRegister(withMessage: "Invalid email format")
-//                return
-//            }
-//
-//            guard let password = RegisterPassword.text, !password.isEmpty else {
-//                // Show an error message for an empty password
-//                showErrorAlertRegister(withMessage: "Password cannot be empty")
-//                return
-//            }
-//
-//            // Use Firebase authentication to register in the user
-//            Firebase.Auth.auth().createUser(withEmail: email, password: password) {[weak self] result, error in
-//                guard let strongSelf = self else { return }
-//                if let error = error {
-//                    // Show an error message if login success
-//                    print("User Register Successfull")
-//
-//                    let nextVC = ExerciseViewController()
-//                    strongSelf.navigationController?.pushViewController(nextVC, animated: true)
-//
-//                    return
-//                }
-//
-//
-//
-//                    // Login failed
-//                    strongSelf.showErrorAlertRegister(withMessage: "User Register failed")
-//
-//
-//
-//
-//
-////                let nextVC = ExerciseViewController()
-////                strongSelf.navigationController?.pushViewController(nextVC, animated: true)
-//
-//
-//            }
-//        }
-        
         @objc func buttonTapped3() {
             guard let email = RegisterEmail.text, !email.isEmpty, email.contains("@"), email.contains(".") else {
                 // Show an error message for an invalid email
@@ -173,7 +107,7 @@
                     // User registration successful
                     print("User registration successful")
                     strongSelf.showErrorAlertRegister(withMessage: "User registration successful")
-                    let nextVC = ExerciseViewController()
+                    let nextVC = WelcomeViewController()
                     strongSelf.navigationController?.pushViewController(nextVC, animated: true)
                 }
             }
@@ -230,9 +164,7 @@
     }
 
 
-    //func RegisterLabelConstrains() {
-    //
-    //}
+
 
     func RegisterPasswordConstrains(){
         NSLayoutConstraint.activate([
@@ -297,10 +229,5 @@
         return RegisterPassword
     }()
 
-
-    //let RegisterLabel: UILabel = {
-    //
-    //    return RegisterLabel
-    //}()
 
 
