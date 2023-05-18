@@ -5,31 +5,211 @@
 //  Created by Tinush mihiran on 2023-05-17.
 //
 
-import UIKit
+//import UIKit
+//import FirebaseFirestore
+//
+//class ProfileViewController: UIViewController {
+//
+//    private let firestore = Firestore.firestore()
+//
+//    private var nameLabel: UILabel!
+//    private var ageLabel: UILabel!
+//    private var genderLabel: UILabel!
+//    private var heightLabel: UILabel!
+//    private var activityLevelLabel: UILabel!
+//
+//    var profileData: [String: Any]? // Assuming you pass the profile data to this view controller
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = .white
+//
+//        setupUI()
+//        populateProfileData()
+//    }
+//
+//    private func setupUI() {
+//        // Add "Go Back" button
+//        let goBackButton = UIButton(type: .system)
+//        goBackButton.translatesAutoresizingMaskIntoConstraints = false
+//        goBackButton.setTitle("Go Back", for: .normal)
+//        goBackButton.backgroundColor = .white
+//        goBackButton.addTarget(self, action: #selector(goBackButtonTapped), for: .touchUpInside)
+//        view.addSubview(goBackButton)
+//
+//        NSLayoutConstraint.activate([
+//            goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            goBackButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            goBackButton.widthAnchor.constraint(equalToConstant: 100),
+//            goBackButton.heightAnchor.constraint(equalToConstant: 40)
+//        ])
+//
+//        // Add labels to display profile details
+//        nameLabel = UILabel()
+//        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(nameLabel)
+//
+//        ageLabel = UILabel()
+//        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(ageLabel)
+//
+//        genderLabel = UILabel()
+//        genderLabel.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(genderLabel)
+//
+//        heightLabel = UILabel()
+//        heightLabel.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(heightLabel)
+//
+//        activityLevelLabel = UILabel()
+//        activityLevelLabel.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(activityLevelLabel)
+//
+//        NSLayoutConstraint.activate([
+//            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+//
+//            ageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            ageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+//
+//            genderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            genderLabel.topAnchor.constraint(equalTo: ageLabel.bottomAnchor, constant: 20),
+//
+//            heightLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            heightLabel.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 20),
+//
+//            activityLevelLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityLevelLabel.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 20)
+//        ])
+//    }
+//
+//    private func populateProfileData() {
+//        guard let profileData = profileData,
+//              let name = profileData["name"] as? String,
+//              let age = profileData["age"] as? String,
+//              let gender = profileData["gender"] as? String,
+//              let height = profileData["height"] as? Float,
+//              let activityLevel = profileData["activityLevel"] as? Int else {
+//            return
+//        }
+//
+//        nameLabel.text = "Name: \(name)"
+//        ageLabel.text = "Age: \(age)"
+//        genderLabel.text = "Gender: \(gender)"
+//        heightLabel.text = "Height: \(height) cm"
+//        activityLevelLabel.text = "Activity Level: \(activityLevel)"
+//    }
+//
+//    @objc private func goBackButtonTapped() {
+//        navigationController?.popViewController(animated: true)
+//    }
+//}
 
-class ProfileViewController: UIViewController {
+import UIKit
+import FirebaseFirestore
+import FirebaseAuth
+
+class ProfileViewController: UIViewController, UIPickerViewDelegate {
+
+    // MARK: - Properties
+    
+    private let firestore = Firestore.firestore()
+    
+    private var nameLabel: UILabel!
+    private var ageLabel: UILabel!
+    private var genderLabel: UILabel!
+    private var heightLabel: UILabel!
+    private var activityLevelLabel: UILabel!
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        // Add "Go Back" button
-           let goBackButton = UIButton(type: .system)
-           goBackButton.translatesAutoresizingMaskIntoConstraints = false
-           goBackButton.setTitle("Go Back", for: .normal)
-           goBackButton.backgroundColor = .white
-           goBackButton.addTarget(self, action: #selector(goBackButtonTapped), for: .touchUpInside)
-           view.addSubview(goBackButton)
         
+        setupUI()
+        fetchProfileDetails()
+    }
+    
+    // MARK: - UI Setup
+    
+    private func setupUI() {
+        view.backgroundColor = .white
+        
+        // Name Label
+        nameLabel = UILabel()
+        nameLabel.textAlignment = .center
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(nameLabel)
+        
+        // Age Label
+        ageLabel = UILabel()
+        ageLabel.textAlignment = .center
+        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(ageLabel)
+        
+        // Gender Label
+        genderLabel = UILabel()
+        genderLabel.textAlignment = .center
+        genderLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(genderLabel)
+        
+        // Height Label
+        heightLabel = UILabel()
+        heightLabel.textAlignment = .center
+        heightLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(heightLabel)
+        
+        // Activity Level Label
+        activityLevelLabel = UILabel()
+        activityLevelLabel.textAlignment = .center
+        activityLevelLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityLevelLabel)
+        
+        // Constraints
         NSLayoutConstraint.activate([
-            goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            goBackButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            goBackButton.widthAnchor.constraint(equalToConstant: 100),
-            goBackButton.heightAnchor.constraint(equalToConstant: 40)
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+
+            ageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            ageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+
+            genderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            genderLabel.topAnchor.constraint(equalTo: ageLabel.bottomAnchor, constant: 20),
+
+            heightLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            heightLabel.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 20),
+
+            activityLevelLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityLevelLabel.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 20)
         ])
     }
-
-    @objc func goBackButtonTapped() {
-      
-        navigationController?.popViewController(animated: true)
-   
+    
+    // MARK: - Data Fetching
+    
+    private func fetchProfileDetails() {
+        guard let userEmail = Auth.auth().currentUser?.email else {
+            return
+        }
+        
+        firestore.collection("profiles").document(userEmail).getDocument { [weak self] snapshot, error in
+            if let error = error {
+                print("Error fetching profile details: \(error.localizedDescription)")
+                return
+            }
+            
+            if let data = snapshot?.data(),
+               let name = data["name"] as? String,
+               let age = data["age"] as? String,
+               let gender = data["gender"] as? String,
+               let height = data["height"] as? Float,
+               let activityLevel = data["activityLevel"] as? Int {
+                
+                self?.nameLabel.text = "Name: \(name)"
+                self?.ageLabel.text = "Age: \(age)"
+                self?.genderLabel.text = "Gender: \(gender)"
+                self?.heightLabel.text = "Height: \(height) cm"
+                self?.activityLevelLabel.text = "Activity Level: \(activityLevel)"
+            }
+        }
     }
 }
