@@ -464,9 +464,106 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
      
 
         ])
+        //add round view six
+        
+        let roundviewsix = UIView()
+        roundviewsix.backgroundColor = .white
+        stackView.addArrangedSubview(roundviewsix)
+        
+        roundviewsix.translatesAutoresizingMaskIntoConstraints = false
+        roundviewsix.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        roundviewsix.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        roundviewsix.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
+        roundviewsix.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
+        roundviewsix.layer.cornerRadius = 30
+        roundviewsix.layer.masksToBounds = true
+        
+        // Add title label to roundviewsix
+        let titleLabel = UILabel()
+        titleLabel.text = "Random Exercise"
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = .black
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 38)
+        roundviewsix.addSubview(titleLabel)
+
+        // Configure titleLabel's constraints
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: roundviewsix.topAnchor, constant: 20).isActive = true
         
         
+    
+        func fetchRandomExercises(completion: @escaping ([Exercisess]) -> Void) {
+            let db = Firestore.firestore()
+            let exercisesRef = db.collection("RandomExercises")
+
+            // Fetch all exercises from Firestore
+            exercisesRef.getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching exercises: \(error.localizedDescription)")
+                    completion([])
+                    return
+                }
+
+                var exercises: [Exercisess] = []
+
+                // Process snapshot and convert documents to Exercise objects
+                for document in snapshot?.documents ?? [] {
+                    if let exercise = Exercisess(document: document) {
+                        exercises.append(exercise)
+                    }
+                }
+
+                // Select three random exercises
+                let randomExercises = exercises.shuffled().prefix(3)
+
+                completion(Array(randomExercises))
+            }
+        }
         
+        func createCardView(for exercise: Exercisess) -> UIView {
+            let cardView = UIView()
+            cardView.backgroundColor = UIColor.black
+            cardView.layer.cornerRadius = 10
+            cardView.layer.masksToBounds = true
+
+            // Customize the card view with exercise details, e.g., exercise name label
+            let nameLabel = UILabel()
+            nameLabel.text = exercise.name
+            nameLabel.textAlignment = .center
+            nameLabel.textColor = .white
+            // Add other subviews and configure their layout
+
+            cardView.addSubview(nameLabel)
+            
+            // Configure nameLabel's constraints
+            nameLabel.translatesAutoresizingMaskIntoConstraints = false
+            nameLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+            nameLabel.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
+            
+            
+            
+
+            return cardView
+        }
+        
+        fetchRandomExercises { randomExercises in
+            DispatchQueue.main.async {
+                for exercise in randomExercises {
+                    let cardView = createCardView(for: exercise)
+                    roundviewsix.addSubview(cardView)
+
+                    // Configure cardView's constraints
+                    cardView.translatesAutoresizingMaskIntoConstraints = false
+                    cardView.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
+                    cardView.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
+                    cardView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+                    cardView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+                }
+            }
+        }
+
+        //////////////////////
         
         let roundViewThree = UIView()
         //roundViewThree.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
