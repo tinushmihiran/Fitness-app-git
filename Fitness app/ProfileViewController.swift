@@ -120,6 +120,7 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate {
     private var genderLabel: UILabel!
     private var heightLabel: UILabel!
     private var activityLevelLabel: UILabel!
+    private var logoutButton: UIButton!
     
     // MARK: - Lifecycle
     
@@ -128,6 +129,7 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate {
         
         setupUI()
         fetchProfileDetails()
+        addLogoutButton()
     }
     
     // MARK: - UI Setup
@@ -165,6 +167,13 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate {
         activityLevelLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(activityLevelLabel)
         
+        // Logout Button
+        logoutButton = UIButton(type: .system)
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(logoutButton)
+        
         // Constraints
         NSLayoutConstraint.activate([
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -180,7 +189,10 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate {
             heightLabel.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 20),
 
             activityLevelLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityLevelLabel.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 20)
+            activityLevelLabel.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 20),
+            
+            logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
     
@@ -210,6 +222,24 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate {
                 self?.heightLabel.text = "Height: \(height) cm"
                 self?.activityLevelLabel.text = "Activity Level: \(activityLevel)"
             }
+        }
+    }
+    
+    // MARK: - Logout Button
+    
+    private func addLogoutButton() {
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        navigationItem.rightBarButtonItem = logoutButton
+    }
+    
+    @objc private func logoutButtonTapped() {
+        do {
+            try Auth.auth().signOut()
+            // Redirect to the login screen
+            let loginVC = ViewController()
+            navigationController?.setViewControllers([loginVC], animated: true)
+        } catch {
+            print("Error logging out: \(error.localizedDescription)")
         }
     }
 }
