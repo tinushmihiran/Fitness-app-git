@@ -490,78 +490,191 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: roundviewsix.topAnchor, constant: 20).isActive = true
-        
-        
-    
-        func fetchRandomExercises(completion: @escaping ([Exercisess]) -> Void) {
-            let db = Firestore.firestore()
-            let exercisesRef = db.collection("RandomExercises")
+        // Create the button
+        let button = UIButton(type: .system)
+        button.setTitle("Navigate", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+        button.addTarget(self, action: #selector(navigateButtonTapped), for: .touchUpInside)
 
-            // Fetch all exercises from Firestore
-            exercisesRef.getDocuments { (snapshot, error) in
-                if let error = error {
-                    print("Error fetching exercises: \(error.localizedDescription)")
-                    completion([])
-                    return
-                }
+        // Add the button to roundviewsix
+        roundviewsix.addSubview(button)
 
-                var exercises: [Exercisess] = []
+        // Configure button's constraints
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
 
-                // Process snapshot and convert documents to Exercise objects
-                for document in snapshot?.documents ?? [] {
-                    if let exercise = Exercisess(document: document) {
-                        exercises.append(exercise)
-                    }
-                }
-
-                // Select three random exercises
-                let randomExercises = exercises.shuffled().prefix(3)
-
-                completion(Array(randomExercises))
-            }
-        }
-        
-        func createCardView(for exercise: Exercisess) -> UIView {
-            let cardView = UIView()
-            cardView.backgroundColor = UIColor.black
-            cardView.layer.cornerRadius = 10
-            cardView.layer.masksToBounds = true
-
-            // Customize the card view with exercise details, e.g., exercise name label
-            let nameLabel = UILabel()
-            nameLabel.text = exercise.name
-            nameLabel.textAlignment = .center
-            nameLabel.textColor = .white
-            // Add other subviews and configure their layout
-
-            cardView.addSubview(nameLabel)
-            
-            // Configure nameLabel's constraints
-            nameLabel.translatesAutoresizingMaskIntoConstraints = false
-            nameLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
-            nameLabel.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
-            
-            
-            
-
-            return cardView
-        }
-        
-        fetchRandomExercises { randomExercises in
-            DispatchQueue.main.async {
-                for exercise in randomExercises {
-                    let cardView = createCardView(for: exercise)
-                    roundviewsix.addSubview(cardView)
-
-                    // Configure cardView's constraints
-                    cardView.translatesAutoresizingMaskIntoConstraints = false
-                    cardView.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
-                    cardView.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
-                    cardView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-                    cardView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-                }
-            }
-        }
+//
+//
+////        func fetchRandomExercises(completion: @escaping ([Exercisess]) -> Void) {
+////            let db = Firestore.firestore()
+////            let exercisesRef = db.collection("RandomExercises")
+////
+////            // Fetch all exercises from Firestore
+////            exercisesRef.getDocuments { (snapshot, error) in
+////                if let error = error {
+////                    print("Error fetching exercises: \(error.localizedDescription)")
+////                    completion([])
+////                    return
+////                }
+////
+////                var exercises: [Exercisess] = []
+////
+////                // Process snapshot and convert documents to Exercise objects
+////                for document in snapshot?.documents ?? [] {
+////                    if let exercise = Exercisess(document: document) {
+////                        exercises.append(exercise)
+////                    }
+////                }
+////
+////                // Select three random exercises
+////                let randomExercises = exercises.shuffled().prefix(3)
+////
+////                completion(Array(randomExercises))
+////            }
+////        }
+//
+//        func fetchRandomExercises(completion: @escaping ([Exercisess]) -> Void) {
+//            let db = Firestore.firestore()
+//            let exercisesRef = db.collection("RandomExercises")
+//
+//            // Fetch all exercises from Firestore
+//            exercisesRef.getDocuments { (snapshot, error) in
+//                if let error = error {
+//                    print("Error fetching exercises: \(error.localizedDescription)")
+//                    completion([])
+//                    return
+//                }
+//
+//                var exercises: [Exercisess] = []
+//
+//                // Process snapshot and convert documents to Exercise objects
+//                for document in snapshot?.documents ?? [] {
+//                    if let exercise = Exercisess(document: document) {
+//                        exercises.append(exercise)
+//                    }
+//                }
+//
+//                // Select three random exercises
+//                let randomExercises = exercises.shuffled().prefix(3)
+//
+//                completion(Array(randomExercises))
+//            }
+//        }
+//
+////        func createCardView(for exercise: Exercisess) -> UIView {
+////            let cardView = UIView()
+////            cardView.backgroundColor = UIColor.black
+////            cardView.layer.cornerRadius = 10
+////            cardView.layer.masksToBounds = true
+////
+////            // Customize the card view with exercise details, e.g., exercise name label
+////            let nameLabel = UILabel()
+////            nameLabel.text = exercise.name
+////            nameLabel.textAlignment = .center
+////            nameLabel.textColor = .white
+////            // Add other subviews and configure their layout
+////
+////            cardView.addSubview(nameLabel)
+////
+////            // Configure nameLabel's constraints
+////            nameLabel.translatesAutoresizingMaskIntoConstraints = false
+////            nameLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+////            nameLabel.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
+////
+////
+////            return cardView
+////        }
+//
+//        func createCardView(for exercise: Exercisess) -> UIView {
+//            let cardView = UIView()
+//            cardView.backgroundColor = UIColor.black
+//            cardView.layer.cornerRadius = 10
+//            cardView.layer.masksToBounds = true
+//
+//            // Customize the card view with exercise details, e.g., exercise name label
+//            let nameLabel = UILabel()
+//            nameLabel.text = exercise.name
+//            nameLabel.textAlignment = .center
+//            nameLabel.textColor = .white
+//            // Add other subviews and configure their layout
+//
+//            cardView.addSubview(nameLabel)
+//
+//            // Configure nameLabel's constraints
+//            nameLabel.translatesAutoresizingMaskIntoConstraints = false
+//            nameLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+//            nameLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20).isActive = true
+//
+//            // Add labels for days, details, and level
+//            let daysLabel = UILabel()
+//            daysLabel.text = "Days: \(exercise.days)"
+//            daysLabel.textAlignment = .center
+//            daysLabel.textColor = .white
+//
+//            let detailsLabel = UILabel()
+//            detailsLabel.text = "Details: \(exercise.details)"
+//            detailsLabel.textAlignment = .center
+//            detailsLabel.textColor = .white
+//
+//            let levelLabel = UILabel()
+//            levelLabel.text = "Level: \(exercise.level)"
+//            levelLabel.textAlignment = .center
+//            levelLabel.textColor = .white
+//
+//            cardView.addSubview(daysLabel)
+//            cardView.addSubview(detailsLabel)
+//            cardView.addSubview(levelLabel)
+//
+//            // Configure daysLabel's constraints
+//            daysLabel.translatesAutoresizingMaskIntoConstraints = false
+//            daysLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+//            daysLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
+//
+//            // Configure detailsLabel's constraints
+//            detailsLabel.translatesAutoresizingMaskIntoConstraints = false
+//            detailsLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+//            detailsLabel.topAnchor.constraint(equalTo: daysLabel.bottomAnchor, constant: 10).isActive = true
+//
+//            // Configure levelLabel's constraints
+//            levelLabel.translatesAutoresizingMaskIntoConstraints = false
+//            levelLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+//            levelLabel.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 10).isActive = true
+//
+//            return cardView
+//        }
+//
+////        fetchRandomExercises { randomExercises in
+////            DispatchQueue.main.async {
+////                for exercise in randomExercises {
+////                    let cardView = createCardView(for: exercise)
+////                    roundviewsix.addSubview(cardView)
+////
+////                    // Configure cardView's constraints
+////                    cardView.translatesAutoresizingMaskIntoConstraints = false
+////                    cardView.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
+////                    cardView.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
+////                    cardView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+////                    cardView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+////                }
+////            }
+////        }
+//
+//        fetchRandomExercises { randomExercises in
+//            DispatchQueue.main.async {
+//                for exercise in randomExercises {
+//                    let cardView = createCardView(for: exercise)
+//                    roundviewsix.addSubview(cardView)
+//
+//                    // Configure cardView's constraints
+//                    cardView.translatesAutoresizingMaskIntoConstraints = false
+//                    cardView.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
+//                    cardView.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
+//                    cardView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+//                    cardView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+//                }
+//            }
+//        }
 
         //////////////////////
         
@@ -751,6 +864,11 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
    
     }
     
+    @objc func navigateButtonTapped() {
+        let nextViewController = RandomDetailViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
     @objc func buttonTapped() {
         let nextViewController = ExerciseListViewController()
         navigationController?.pushViewController(nextViewController, animated: true)
@@ -788,7 +906,6 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
   
     
 }
-
 
 
 

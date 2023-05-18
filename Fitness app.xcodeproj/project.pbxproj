@@ -10,7 +10,8 @@
 		031043272A15DBE00068781D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031043262A15DBE00068781D /* ProfileViewController.swift */; };
 		0310432A2A15E9AC0068781D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031043292A15E9AC0068781D /* WelcomeViewController.swift */; };
 		0310432D2A15EB310068781D /* ProfileDetailGetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */; };
-		031043312A1667040068781D /* randomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031043302A1667040068781D /* randomModel.swift */; };
+		031043382A169DB50068781D /* RandomDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031043372A169DB50068781D /* RandomDetailViewController.swift */; };
+		0310433C2A16AA1B0068781D /* RandomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310433B2A16AA1B0068781D /* RandomModel.swift */; };
 		0358E1252A13E55E00ED554A /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */; };
 		03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */; };
 		0368D17C2A0DECC10038C37A /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */; };
@@ -40,7 +41,8 @@
 		031043262A15DBE00068781D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		031043292A15E9AC0068781D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailGetViewController.swift; sourceTree = "<group>"; };
-		031043302A1667040068781D /* randomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = randomModel.swift; sourceTree = "<group>"; };
+		031043372A169DB50068781D /* RandomDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDetailViewController.swift; sourceTree = "<group>"; };
+		0310433B2A16AA1B0068781D /* RandomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomModel.swift; sourceTree = "<group>"; };
 		0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
 		03611D892A1226D10088B939 /* ExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewController.swift; sourceTree = "<group>"; };
 		0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +124,8 @@
 				0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */,
 				031043262A15DBE00068781D /* ProfileViewController.swift */,
 				0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */,
-				031043302A1667040068781D /* randomModel.swift */,
+				031043372A169DB50068781D /* RandomDetailViewController.swift */,
+				0310433B2A16AA1B0068781D /* RandomModel.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -215,8 +218,8 @@
 				03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */,
 				031043272A15DBE00068781D /* ProfileViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
+				0310433C2A16AA1B0068781D /* RandomModel.swift in Sources */,
 				0310432A2A15E9AC0068781D /* WelcomeViewController.swift in Sources */,
-				031043312A1667040068781D /* randomModel.swift in Sources */,
 				0310432D2A15EB310068781D /* ProfileDetailGetViewController.swift in Sources */,
 				03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */,
 				03739AC82A11149A00BEAE33 /* Meals.swift in Sources */,
@@ -225,6 +228,7 @@
 				03F0DDEC2A0CA5C400D64E92 /* ExerciseListViewController.swift in Sources */,
 				03EB15692A0A58D700570784 /* SceneDelegate.swift in Sources */,
 				03EB15812A0A5AB600570784 /* ExerciseViewController.swift in Sources */,
+				031043382A169DB50068781D /* RandomDetailViewController.swift in Sources */,
 				03EB157F2A0A5AB600570784 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
