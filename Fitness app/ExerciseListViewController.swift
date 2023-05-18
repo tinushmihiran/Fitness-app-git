@@ -50,7 +50,7 @@ class ExerciseListViewController: UIViewController {
     }
     
     @objc func cardTapped(_ sender: UITapGestureRecognizer) {
-        guard let cardView = sender.view as? UIView else { return }
+        guard let cardView = sender.view else { return }
         guard let index = cardView.tag as Int? else { return }
         let selectedexercise = exercises[index]
         
