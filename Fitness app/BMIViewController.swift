@@ -615,6 +615,10 @@ class BMIViewController: UIViewController {
         setupHeightTextField()
         setupCalculateButton()
         setupBmiLabel()
+        
+        // Add tap gesture recognizer to dismiss the keyboard
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+                view.addGestureRecognizer(tapGesture)
     }
 
     func setupWeightTextField() {
@@ -862,6 +866,10 @@ class BMIViewController: UIViewController {
         }
     }
 
+    @objc func dismissKeyboard() {
+            view.endEditing(true)
+        }
+    
     @objc func cardViewTapped(_ sender: UITapGestureRecognizer) {
         guard let tappedCardView = sender.view, let index = cardViews.firstIndex(of: tappedCardView) else {
             return

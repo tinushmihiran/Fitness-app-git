@@ -524,8 +524,14 @@ class ProfileDetailGetViewController: UIViewController, UIPickerViewDelegate {
         super.viewDidLoad()
         
         setupUI()
+        
+        // Add tap gesture recognizer to dismiss the keyboard
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+                view.addGestureRecognizer(tapGesture)
     }
-    
+    @objc func dismissKeyboard() {
+            view.endEditing(true)
+        }
     // MARK: - UI Setup
     
     private func setupUI() {

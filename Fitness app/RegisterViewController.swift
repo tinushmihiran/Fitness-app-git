@@ -75,7 +75,15 @@
                 RegisterBtn.topAnchor.constraint(equalTo: RegisterPassword.bottomAnchor, constant: 50)
             ])
             
+            // Add tap gesture recognizer to dismiss the keyboard
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+                    view.addGestureRecognizer(tapGesture)
+            
         }
+        
+        @objc func dismissKeyboard() {
+                view.endEditing(true)
+            }
         
         @objc func didTapLabelRegister(_ gesture: UITapGestureRecognizer) {
                 // Create and push a new view controller onto the navigation stack

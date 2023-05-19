@@ -64,6 +64,11 @@ class ViewController: UIViewController {
             LoginBtn.centerXAnchor.constraint(equalTo: roundedView.centerXAnchor),
             LoginBtn.topAnchor.constraint(equalTo: Password.bottomAnchor, constant: 50)
         ])
+        
+        // Add tap gesture recognizer to dismiss keyboard
+            let tapGestureToDismiss = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            view.addGestureRecognizer(tapGestureToDismiss)
+        
     }
     
     @objc func didTapLabel(_ gesture: UITapGestureRecognizer) {
@@ -182,5 +187,9 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         return button
     }()
+    
+    @objc func dismissKeyboard() {
+            view.endEditing(true)
+        }
 
 }
