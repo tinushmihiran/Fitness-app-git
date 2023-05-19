@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import WebKit
 
 class ExerciseListViewController: UIViewController {
     
@@ -166,6 +167,7 @@ class ExerciseDetailsViewController: UIViewController {
     
     let exercise: Exercise
     let goBackButton = UIButton()
+    let webView = WKWebView()
     
     init(exercise: Exercise) {
         self.exercise = exercise
@@ -202,13 +204,41 @@ class ExerciseDetailsViewController: UIViewController {
         muscleLabel.textColor = UIColor.secondaryLabel
         muscleLabel.numberOfLines = 0
         
-               
+//        // Set up the WKWebView
+//             let videoURL = URL(string: "https://youtu.be/iSSAk4XCsRA")
+//             let request = URLRequest(url: videoURL!)
+//             webView.load(request)
+//             webView.translatesAutoresizingMaskIntoConstraints = false
+//             view.addSubview(webView)
+//
+//             NSLayoutConstraint.activate([
+//                 webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//                 webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//                 webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
+//                 webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
+//             ])
+        
+        // Set up the WKWebView
+               if let videoURL = URL(string: exercise.videoURL) {
+                   let request = URLRequest(url: videoURL)
+                   webView.load(request)
+                   webView.translatesAutoresizingMaskIntoConstraints = false
+                   view.addSubview(webView)
+                   
+                   NSLayoutConstraint.activate([
+                       webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                       webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                       webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
+                       webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
+                   ])
+               }
+        
                // Add labels to the view
                view.addSubview(nameLabel)
                view.addSubview(exercisedifficultyLabel)
                view.addSubview(typeLabel)
                view.addSubview(muscleLabel)
-               
+                //view.addSubview(webView)
 
         // Set up the labels in the view
         let stackView = UIStackView(arrangedSubviews: [nameLabel, exercisedifficultyLabel, typeLabel, muscleLabel])
