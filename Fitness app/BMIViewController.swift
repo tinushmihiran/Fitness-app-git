@@ -1,96 +1,288 @@
+//
+//  BMIViewController.swift
+//  Fitness app
+//
+//  Created by Tinush mihiran on 2023-05-13.
+//
+
 //import UIKit
-//import FirebaseFirestore
+//import Firebase
 //
-//class BMIViewController: UIViewController, UITextFieldDelegate {
+//class BMIViewController: UIViewController {
 //
-//    private let label: UILabel = {
-//        let label = UILabel()
-//        label.textAlignment = .center
-//        label.numberOfLines = 0
-//        return label
-//    }()
+//    var weightTextField: UITextField!
+//    var heightTextField: UITextField!
+//    var calculateButton: UIButton!
+//    var bmiLabel: UILabel!
+//    var cardViews: [UIView] = []
 //
-//    private let field: UITextField = {
-//        let field = UITextField()
-//        field.placeholder = "Enter Schedule Name"
-//        field.layer.borderWidth = 1
-//        field.layer.borderColor = UIColor.black.cgColor
-//        return field
-//    }()
-//
-//    let database = Firestore.firestore()
-//
-//    // Declare saveButton as an instance property
-//    private let saveButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Save", for: .normal)
-//        return button
-//    }()
+//    let firestore = Firestore.firestore()
 //
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //        view.backgroundColor = .white
+//        navigationController?.setNavigationBarHidden(false, animated: true)
 //
-//        // Add label, field, and save button as subviews
-//        view.addSubview(label)
-//        view.addSubview(field)
-//        view.addSubview(saveButton)
+//        // Create back button
+//        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(goBack))
 //
-//        // Set the text field's delegate to self
-//        field.delegate = self
+//        // Add back button to navigation item
+//        navigationItem.leftBarButtonItem = backButton
 //
-//        // Set the save button's target and action
-//        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+//        setupWeightTextField()
+//        setupHeightTextField()
+//        setupCalculateButton()
+//        setupBmiLabel()
+//    }
 //
-//        let docRef = database.document("/Schedules/ScheduleData")
-//        docRef.addSnapshotListener { [weak self] snapshot, error in
-//            guard let data = snapshot?.data(), error == nil else {
+//    func setupWeightTextField() {
+//        weightTextField = UITextField()
+//        weightTextField.translatesAutoresizingMaskIntoConstraints = false
+//        weightTextField.placeholder = "Enter your weight (kg)"
+//        weightTextField.keyboardType = .decimalPad
+//        weightTextField.borderStyle = .roundedRect
+//        weightTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+//        weightTextField.layer.cornerRadius = 10
+//
+//        view.addSubview(weightTextField)
+//
+//        NSLayoutConstraint.activate([
+//            weightTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            weightTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+//            weightTextField.widthAnchor.constraint(equalToConstant: 200),
+//            weightTextField.heightAnchor.constraint(equalToConstant: 40)
+//        ])
+//    }
+//
+//    func setupHeightTextField() {
+//        heightTextField = UITextField()
+//        heightTextField.translatesAutoresizingMaskIntoConstraints = false
+//        heightTextField.placeholder = "Enter your height (m)"
+//        heightTextField.keyboardType = .decimalPad
+//        heightTextField.borderStyle = .roundedRect
+//        heightTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+//        heightTextField.layer.cornerRadius = 10
+//
+//        view.addSubview(heightTextField)
+//
+//        NSLayoutConstraint.activate([
+//            heightTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            heightTextField.topAnchor.constraint(equalTo: weightTextField.bottomAnchor, constant: 20),
+//            heightTextField.widthAnchor.constraint(equalToConstant: 200),
+//            heightTextField.heightAnchor.constraint(equalToConstant: 40)
+//        ])
+//    }
+//
+//    func setupCalculateButton() {
+//        calculateButton = UIButton()
+//        calculateButton.translatesAutoresizingMaskIntoConstraints = false
+//        calculateButton.setTitle("Calculate BMI", for: .normal)
+//        calculateButton.setTitleColor(.white, for: .normal)
+//        calculateButton.addTarget(self, action: #selector(calculateBMI), for: .touchUpInside)
+//        calculateButton.backgroundColor = .systemBlue
+//        calculateButton.layer.cornerRadius = 10
+//
+//        view.addSubview(calculateButton)
+//
+//        NSLayoutConstraint.activate([
+//            calculateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            calculateButton.topAnchor.constraint(equalTo: heightTextField.bottomAnchor, constant: 20),
+//            calculateButton.widthAnchor.constraint(equalToConstant: 150),
+//            calculateButton.heightAnchor.constraint(equalToConstant: 40)
+//        ])
+//    }
+//
+//    func setupBmiLabel() {
+//        bmiLabel = UILabel()
+//        bmiLabel.translatesAutoresizingMaskIntoConstraints = false
+//        bmiLabel.text = "Your BMI will appear here"
+//        bmiLabel.textAlignment = .center
+//        bmiLabel.font = UIFont.systemFont(ofSize: 20)
+//        bmiLabel.numberOfLines = 0
+//
+//        view.addSubview(bmiLabel)
+//
+//        NSLayoutConstraint.activate([
+//            bmiLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            bmiLabel.topAnchor.constraint(equalTo: calculateButton.bottomAnchor, constant: 20),
+//            bmiLabel.widthAnchor.constraint(equalToConstant: 250),
+//            bmiLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
+//        ])
+//    }
+//
+//    @objc func calculateBMI() {
+//        guard let weightText = weightTextField.text,
+//              let heightText = heightTextField.text,
+//              let weight = Double(weightText),
+//              let height = Double(heightText),
+//              height > 0 else {
+//            bmiLabel.text = "Invalid input"
+//            return
+//        }
+//
+//        let bmi = weight / (height * height)
+//        bmiLabel.text = String(format: "Your BMI is %.2f", bmi)
+//
+//        clearCardViews()
+//        fetchFitnessPlans(bmi: bmi)
+//    }
+//
+//    func clearCardViews() {
+//        for cardView in cardViews {
+//            cardView.removeFromSuperview()
+//        }
+//        cardViews.removeAll()
+//    }
+//
+//    func fetchFitnessPlans(bmi: Double) {
+//        var collectionName: String
+//
+//        if bmi < 18.5 {
+//            collectionName = "beginner_plans"
+//        } else if bmi >= 18.5 && bmi < 25 {
+//            collectionName = "intermediate_plans"
+//        } else {
+//            collectionName = "advanced_plans"
+//        }
+//
+//        let plansCollection = firestore.collection(collectionName)
+//
+//        plansCollection.getDocuments { (snapshot, error) in
+//            if let error = error {
+//                print("Error fetching fitness plans: \(error.localizedDescription)")
 //                return
 //            }
 //
-//            guard let text = data["text"] as? String else {
+//            guard let documents = snapshot?.documents else {
+//                print("No fitness plans found")
 //                return
 //            }
 //
-//            DispatchQueue.main.async {
-//                self?.label.text = text
+//            var suggestedPlans: [FitnessPlan] = []
+//
+//            for document in documents {
+//                guard let planData = document.data() as? [String: Any],
+//                      let name = planData["name"] as? String,
+//                      let level = planData["level"] as? String,
+//                      let details = planData["details"] as? String,
+//                      let days = planData["days"] as? String else {
+//                    continue
+//                }
+//
+//                let plan = FitnessPlan(name: name, level: level, details: details, days: days)
+//                suggestedPlans.append(plan)
 //            }
+//
+//            if suggestedPlans.isEmpty {
+//                suggestedPlans.append(FitnessPlan(name: "No fitness plans available for your BMI", level: "", details: "", days: ""))
+//            }
+//
+//            self.displayFitnessPlans(suggestedPlans)
 //        }
 //    }
 //
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
+//    func displayFitnessPlans(_ plans: [FitnessPlan]) {
+//        var previousCardView: UIView?
 //
-//        // Calculate the center Y position based on the safe area insets
-//        let centerY = view.safeAreaInsets.top + (view.bounds.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom) / 2
+//        for plan in plans {
+//            let cardView = UIView()
+//            cardView.translatesAutoresizingMaskIntoConstraints = false
+//            cardView.backgroundColor = .white
+//            cardView.layer.cornerRadius = 10
+//            cardView.layer.shadowColor = UIColor.black.cgColor
+//            cardView.layer.shadowOpacity = 0.5
+//            cardView.layer.shadowOffset = CGSize(width: 0, height: 2)
+//            cardView.layer.shadowRadius = 2
 //
-//        // Set the frames of the label, text field, and save button
-//        label.frame = CGRect(x: 10, y: centerY - 100, width: view.bounds.width - 20, height: 100)
-//        field.frame = CGRect(x: 10, y: centerY - 25, width: view.bounds.width - 140, height: 50)
-//        saveButton.frame = CGRect(x: field.frame.maxX + 10, y: field.frame.minY, width: view.bounds.width - field.frame.maxX - 20, height: 50)
-//    }
+//            let titleLabel = UILabel()
+//            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+//            titleLabel.text = plan.name
+//            titleLabel.textAlignment = .center
+//            titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+//            titleLabel.textColor = .black
+//            titleLabel.numberOfLines = 0
 //
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if let text = textField.text, !text.isEmpty {
-//            saveData(text: text)
+//            let levelLabel = UILabel()
+//            levelLabel.translatesAutoresizingMaskIntoConstraints = false
+//            levelLabel.text = "Level: \(plan.level)"
+//            levelLabel.textAlignment = .center
+//            levelLabel.font = UIFont.systemFont(ofSize: 14)
+//            levelLabel.textColor = .darkGray
+//
+//            let detailsLabel = UILabel()
+//            detailsLabel.translatesAutoresizingMaskIntoConstraints = false
+//            detailsLabel.text = "Details: \(plan.details)"
+//            detailsLabel.textAlignment = .left
+//            detailsLabel.font = UIFont.systemFont(ofSize: 14)
+//            detailsLabel.textColor = .darkGray
+//            detailsLabel.numberOfLines = 0
+//
+//            let daysLabel = UILabel()
+//            daysLabel.translatesAutoresizingMaskIntoConstraints = false
+//            daysLabel.text = "Days: \(plan.days)"
+//            daysLabel.textAlignment = .right
+//            daysLabel.font = UIFont.systemFont(ofSize: 14)
+//            daysLabel.textColor = .darkGray
+//
+//            cardView.addSubview(titleLabel)
+//            cardView.addSubview(levelLabel)
+//            cardView.addSubview(detailsLabel)
+//            cardView.addSubview(daysLabel)
+//
+//            view.addSubview(cardView)
+//            cardViews.append(cardView)
+//
+//            NSLayoutConstraint.activate([
+//                cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//                cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//                cardView.heightAnchor.constraint(equalToConstant: 120)
+//            ])
+//
+//            if let previousCardView = previousCardView {
+//                NSLayoutConstraint.activate([
+//                    cardView.topAnchor.constraint(equalTo: previousCardView.bottomAnchor, constant: 20)
+//                ])
+//            } else {
+//                NSLayoutConstraint.activate([
+//                    cardView.topAnchor.constraint(equalTo: bmiLabel.bottomAnchor, constant: 20)
+//                ])
+//            }
+//
+//            NSLayoutConstraint.activate([
+//                titleLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 10),
+//                titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+//                titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+//
+//                levelLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+//                levelLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+//                levelLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+//
+//                detailsLabel.topAnchor.constraint(equalTo: levelLabel.bottomAnchor, constant: 5),
+//                detailsLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+//                detailsLabel.trailingAnchor.constraint(equalTo: daysLabel.leadingAnchor, constant: -10),
+//
+//                daysLabel.topAnchor.constraint(equalTo: levelLabel.bottomAnchor, constant: 5),
+//                daysLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10)
+//            ])
+//
+//            previousCardView = cardView
 //        }
-//        return true
 //    }
 //
-//    func saveData(text: String) {
-//        let docRef = Firestore.firestore().document("/Schedules/ScheduleData")
-//        docRef.setData(["text": text])
+//    @objc func goBack() {
+//        navigationController?.popViewController(animated: true)
 //    }
+//}
 //
-//    @objc func saveButtonTapped() {
-//        if let text = field.text, !text.isEmpty {
-//            saveData(text: text)
-//            field.text = ""
-//        }
-//    }
+//struct FitnessPlan {
+//    let name: String
+//    let level: String
+//    let details: String
+//    let days: String
 //}
 
 import UIKit
+import Firebase
 
 class BMIViewController: UIViewController {
 
@@ -98,24 +290,25 @@ class BMIViewController: UIViewController {
     var heightTextField: UITextField!
     var calculateButton: UIButton!
     var bmiLabel: UILabel!
+    var cardViews: [UIView] = []
+
+    let firestore = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
         // Create back button
-           let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(goBack))
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(goBack))
 
-           // Add back button to navigation item
-           navigationItem.leftBarButtonItem = backButton
+        // Add back button to navigation item
+        navigationItem.leftBarButtonItem = backButton
 
-
-        // Set up the UI elements
         setupWeightTextField()
         setupHeightTextField()
         setupCalculateButton()
         setupBmiLabel()
-
     }
 
     func setupWeightTextField() {
@@ -124,8 +317,8 @@ class BMIViewController: UIViewController {
         weightTextField.placeholder = "Enter your weight (kg)"
         weightTextField.keyboardType = .decimalPad
         weightTextField.borderStyle = .roundedRect
-        weightTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2) // set background color
-        weightTextField.layer.cornerRadius = 10 // set corner radius
+        weightTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        weightTextField.layer.cornerRadius = 10
 
         view.addSubview(weightTextField)
 
@@ -143,8 +336,8 @@ class BMIViewController: UIViewController {
         heightTextField.placeholder = "Enter your height (m)"
         heightTextField.keyboardType = .decimalPad
         heightTextField.borderStyle = .roundedRect
-        heightTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2) // set background color
-        heightTextField.layer.cornerRadius = 10 // set corner radius
+        heightTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        heightTextField.layer.cornerRadius = 10
 
         view.addSubview(heightTextField)
 
@@ -162,8 +355,8 @@ class BMIViewController: UIViewController {
         calculateButton.setTitle("Calculate BMI", for: .normal)
         calculateButton.setTitleColor(.white, for: .normal)
         calculateButton.addTarget(self, action: #selector(calculateBMI), for: .touchUpInside)
-        calculateButton.backgroundColor = .systemBlue // set background color
-        calculateButton.layer.cornerRadius = 10 // set corner radius
+        calculateButton.backgroundColor = .systemBlue
+        calculateButton.layer.cornerRadius = 10
 
         view.addSubview(calculateButton)
 
@@ -205,10 +398,166 @@ class BMIViewController: UIViewController {
 
         let bmi = weight / (height * height)
         bmiLabel.text = String(format: "Your BMI is %.2f", bmi)
+
+        clearCardViews()
+        fetchFitnessPlans(bmi: bmi)
     }
+
+    func clearCardViews() {
+        for cardView in cardViews {
+            cardView.removeFromSuperview()
+        }
+        cardViews.removeAll()
+    }
+
+    func fetchFitnessPlans(bmi: Double) {
+        var collectionName: String
+
+        if bmi < 18.5 {
+            collectionName = "beginner_plans"
+        } else if bmi >= 18.5 && bmi < 25 {
+            collectionName = "intermediate_plans"
+        } else {
+            collectionName = "advanced_plans"
+        }
+
+        let plansCollection = firestore.collection(collectionName)
+
+        plansCollection.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching fitness plans: \(error.localizedDescription)")
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                print("No fitness plans found")
+                return
+            }
+
+            var suggestedPlans: [FitnessPlan] = []
+
+            for document in documents {
+                guard let planData = document.data() as? [String: Any],
+                      let name = planData["name"] as? String,
+                      let level = planData["level"] as? String,
+                      let details = planData["details"] as? String,
+                      let days = planData["days"] as? String else {
+                    continue
+                }
+
+                let plan = FitnessPlan(name: name, level: level, details: details, days: days)
+                suggestedPlans.append(plan)
+            }
+
+            if suggestedPlans.isEmpty {
+                suggestedPlans.append(FitnessPlan(name: "No fitness plans available for your BMI", level: "", details: "", days: ""))
+            }
+
+            self.displayFitnessPlans(suggestedPlans)
+        }
+    }
+
+    func displayFitnessPlans(_ plans: [FitnessPlan]) {
+        var previousCardView: UIView?
+
+        for plan in plans {
+            let cardView = UIView()
+            cardView.translatesAutoresizingMaskIntoConstraints = false
+            cardView.backgroundColor = .white
+            cardView.layer.cornerRadius = 10
+            cardView.layer.shadowColor = UIColor.black.cgColor
+            cardView.layer.shadowOpacity = 0.5
+            cardView.layer.shadowOffset = CGSize(width: 0, height: 2)
+            cardView.layer.shadowRadius = 2
+
+            // Apply scaling animation
+            cardView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+
+            // Apply spring animation to restore original size
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .curveEaseInOut, animations: {
+                cardView.transform = .identity
+            }, completion: nil)
+
+            let titleLabel = UILabel()
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.text = plan.name
+            titleLabel.textAlignment = .center
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+            titleLabel.textColor = .black
+            titleLabel.numberOfLines = 0
+
+            let levelLabel = UILabel()
+            levelLabel.translatesAutoresizingMaskIntoConstraints = false
+            levelLabel.text = "Level: \(plan.level)"
+            levelLabel.textAlignment = .center
+            levelLabel.font = UIFont.systemFont(ofSize: 14)
+            levelLabel.textColor = .darkGray
+
+            let detailsLabel = UILabel()
+            detailsLabel.translatesAutoresizingMaskIntoConstraints = false
+            detailsLabel.text = plan.details
+            detailsLabel.textAlignment = .center
+            detailsLabel.font = UIFont.systemFont(ofSize: 14)
+            detailsLabel.textColor = .darkGray
+            detailsLabel.numberOfLines = 0
+
+            let daysLabel = UILabel()
+            daysLabel.translatesAutoresizingMaskIntoConstraints = false
+            daysLabel.text = "Days: \(plan.days)"
+            daysLabel.textAlignment = .center
+            daysLabel.font = UIFont.systemFont(ofSize: 14)
+            daysLabel.textColor = .darkGray
+
+            cardView.addSubview(titleLabel)
+            cardView.addSubview(levelLabel)
+            cardView.addSubview(detailsLabel)
+            cardView.addSubview(daysLabel)
+
+            NSLayoutConstraint.activate([
+                titleLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 10),
+                titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+                titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+                levelLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+                levelLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+                levelLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+                detailsLabel.topAnchor.constraint(equalTo: levelLabel.bottomAnchor, constant: 5),
+                detailsLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+                detailsLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+                daysLabel.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 5),
+                daysLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+                daysLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+                daysLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -10)
+            ])
+
+            view.addSubview(cardView)
+
+            NSLayoutConstraint.activate([
+                cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                cardView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120)
+            ])
+
+            if let previousCardView = previousCardView {
+                cardView.topAnchor.constraint(equalTo: previousCardView.bottomAnchor, constant: 20).isActive = true
+            } else {
+                cardView.topAnchor.constraint(equalTo: bmiLabel.bottomAnchor, constant: 20).isActive = true
+            }
+
+            previousCardView = cardView
+
+            cardViews.append(cardView)
+        }
+    }
+
     @objc func goBack() {
         navigationController?.popViewController(animated: true)
     }
+
 }
 
-
+struct FitnessPlan {
+    let name: String
+    let level: String
+    let details: String
+    let days: String
+}
