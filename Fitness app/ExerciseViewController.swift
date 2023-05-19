@@ -27,10 +27,10 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
     let MealsBtn: UIButton = {
         let MealsBtn = UIButton(type: .system)
         MealsBtn.translatesAutoresizingMaskIntoConstraints = false
-        MealsBtn.setTitleColor(.black , for: .normal)
+        MealsBtn.setTitleColor(.white , for: .normal)
         MealsBtn.setTitle("Meals", for: .normal)
         MealsBtn.addTarget(self, action: #selector(mealsBtntapped), for: .touchUpInside)
-        MealsBtn.backgroundColor = .white
+        MealsBtn.backgroundColor = .black
         MealsBtn.layer.cornerRadius = 20
         MealsBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         return MealsBtn
@@ -384,13 +384,25 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewTwo.backgroundColor = .white
         stackView.addArrangedSubview(roundViewTwo)
         roundViewTwo.translatesAutoresizingMaskIntoConstraints = false
-        roundViewTwo.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        roundViewTwo.heightAnchor.constraint(equalToConstant: 250).isActive = true
         roundViewTwo.widthAnchor.constraint(equalToConstant: 50).isActive = true
         roundViewTwo.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
         roundViewTwo.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
         roundViewTwo.layer.cornerRadius = 30
         roundViewTwo.layer.masksToBounds = true
 
+        // Add a background image to roundViewThree
+        let backgroundImageactivity = UIImage(named: "activityback")
+        let backgroundImageViewactivity = UIImageView(image: backgroundImageactivity)
+        backgroundImageViewactivity.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageViewactivity.contentMode = .scaleAspectFill
+        roundViewTwo.addSubview(backgroundImageViewactivity)
+        
+        // Add constraints to the background image view to fit inside the roundViewThree view
+        backgroundImageViewactivity.leadingAnchor.constraint(equalTo: roundViewTwo.leadingAnchor).isActive = true
+        backgroundImageViewactivity.trailingAnchor.constraint(equalTo: roundViewTwo.trailingAnchor).isActive = true
+        backgroundImageViewactivity.topAnchor.constraint(equalTo: roundViewTwo.topAnchor).isActive = true
+        backgroundImageViewactivity.bottomAnchor.constraint(equalTo: roundViewTwo.bottomAnchor).isActive = true
 
         //btn1 constrains
         NSLayoutConstraint.activate([
@@ -432,38 +444,10 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             ActivityBtn.widthAnchor.constraint(equalToConstant: 90),
             ActivityBtn.heightAnchor.constraint(equalToConstant: 50),
-            ActivityBtn.centerXAnchor.constraint(equalTo: TitleRoundViewTwo.centerXAnchor),
-            ActivityBtn.centerYAnchor.constraint(equalTo: TitleRoundViewTwo.centerYAnchor)
-           
+            ActivityBtn.centerXAnchor.constraint(equalTo: roundViewTwo.centerXAnchor),
+            ActivityBtn.centerYAnchor.constraint(equalTo: roundViewTwo.centerYAnchor)
         ])
-       
-        let docRef = database.document("/Schedules/ScheduleData")
-        docRef.addSnapshotListener { [weak self] snapshot, error in
-            guard let data = snapshot?.data(), error == nil else {
-                return
-            }
-            
-            guard let text = data["text"] as? String else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.label.text = text
-            }
-        }
-       
-        roundViewTwo.addSubview(label)
-        
-        //add constrains to text label
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 150),
-            label.heightAnchor.constraint(equalToConstant: 70),
-            label.leftAnchor.constraint(equalTo: roundViewTwo.leftAnchor, constant: 30),
-            label.rightAnchor.constraint(equalTo: roundViewTwo.rightAnchor,constant: 20),
-            label.topAnchor.constraint(equalTo: roundViewTwo.topAnchor, constant: 100)
-     
 
-        ])
         //add round view six
         
         let roundviewsix = UIView()
@@ -478,6 +462,19 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundviewsix.layer.cornerRadius = 30
         roundviewsix.layer.masksToBounds = true
         
+        // Add a background image to roundViewThree
+        let backgroundImagerandom = UIImage(named: "randomback")
+        let backgroundImageViewrandom = UIImageView(image: backgroundImagerandom)
+        backgroundImageViewrandom.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageViewrandom.contentMode = .scaleAspectFill
+        roundviewsix.addSubview(backgroundImageViewrandom)
+        
+        // Add constraints to the background image view to fit inside the roundViewThree view
+        backgroundImageViewrandom.leadingAnchor.constraint(equalTo: roundviewsix.leadingAnchor).isActive = true
+        backgroundImageViewrandom.trailingAnchor.constraint(equalTo: roundviewsix.trailingAnchor).isActive = true
+        backgroundImageViewrandom.topAnchor.constraint(equalTo: roundviewsix.topAnchor).isActive = true
+        backgroundImageViewrandom.bottomAnchor.constraint(equalTo: roundviewsix.bottomAnchor).isActive = true
+        
         // Add title label to roundviewsix
         let titleLabel = UILabel()
         titleLabel.text = "Random Exercise"
@@ -491,198 +488,35 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         titleLabel.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: roundviewsix.topAnchor, constant: 20).isActive = true
         // Create the button
-        let button = UIButton(type: .system)
-        button.setTitle("Navigate", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
-        button.addTarget(self, action: #selector(navigateButtonTapped), for: .touchUpInside)
+        let button: UIButton = {
+            let button = UIButton(type: .system)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitleColor(.white , for: .normal)
+            button.setTitle("Get Random", for: .normal)
+            button.addTarget(self, action: #selector(navigateButtonTapped), for: .touchUpInside)
+            button.backgroundColor = .black
+            button.layer.cornerRadius = 20
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            return button
+        }()
 
         // Add the button to roundviewsix
         roundviewsix.addSubview(button)
 
         // Configure button's constraints
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 120),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor)
+        ])
 
-//
-//
-////        func fetchRandomExercises(completion: @escaping ([Exercisess]) -> Void) {
-////            let db = Firestore.firestore()
-////            let exercisesRef = db.collection("RandomExercises")
-////
-////            // Fetch all exercises from Firestore
-////            exercisesRef.getDocuments { (snapshot, error) in
-////                if let error = error {
-////                    print("Error fetching exercises: \(error.localizedDescription)")
-////                    completion([])
-////                    return
-////                }
-////
-////                var exercises: [Exercisess] = []
-////
-////                // Process snapshot and convert documents to Exercise objects
-////                for document in snapshot?.documents ?? [] {
-////                    if let exercise = Exercisess(document: document) {
-////                        exercises.append(exercise)
-////                    }
-////                }
-////
-////                // Select three random exercises
-////                let randomExercises = exercises.shuffled().prefix(3)
-////
-////                completion(Array(randomExercises))
-////            }
-////        }
-//
-//        func fetchRandomExercises(completion: @escaping ([Exercisess]) -> Void) {
-//            let db = Firestore.firestore()
-//            let exercisesRef = db.collection("RandomExercises")
-//
-//            // Fetch all exercises from Firestore
-//            exercisesRef.getDocuments { (snapshot, error) in
-//                if let error = error {
-//                    print("Error fetching exercises: \(error.localizedDescription)")
-//                    completion([])
-//                    return
-//                }
-//
-//                var exercises: [Exercisess] = []
-//
-//                // Process snapshot and convert documents to Exercise objects
-//                for document in snapshot?.documents ?? [] {
-//                    if let exercise = Exercisess(document: document) {
-//                        exercises.append(exercise)
-//                    }
-//                }
-//
-//                // Select three random exercises
-//                let randomExercises = exercises.shuffled().prefix(3)
-//
-//                completion(Array(randomExercises))
-//            }
-//        }
-//
-////        func createCardView(for exercise: Exercisess) -> UIView {
-////            let cardView = UIView()
-////            cardView.backgroundColor = UIColor.black
-////            cardView.layer.cornerRadius = 10
-////            cardView.layer.masksToBounds = true
-////
-////            // Customize the card view with exercise details, e.g., exercise name label
-////            let nameLabel = UILabel()
-////            nameLabel.text = exercise.name
-////            nameLabel.textAlignment = .center
-////            nameLabel.textColor = .white
-////            // Add other subviews and configure their layout
-////
-////            cardView.addSubview(nameLabel)
-////
-////            // Configure nameLabel's constraints
-////            nameLabel.translatesAutoresizingMaskIntoConstraints = false
-////            nameLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
-////            nameLabel.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
-////
-////
-////            return cardView
-////        }
-//
-//        func createCardView(for exercise: Exercisess) -> UIView {
-//            let cardView = UIView()
-//            cardView.backgroundColor = UIColor.black
-//            cardView.layer.cornerRadius = 10
-//            cardView.layer.masksToBounds = true
-//
-//            // Customize the card view with exercise details, e.g., exercise name label
-//            let nameLabel = UILabel()
-//            nameLabel.text = exercise.name
-//            nameLabel.textAlignment = .center
-//            nameLabel.textColor = .white
-//            // Add other subviews and configure their layout
-//
-//            cardView.addSubview(nameLabel)
-//
-//            // Configure nameLabel's constraints
-//            nameLabel.translatesAutoresizingMaskIntoConstraints = false
-//            nameLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
-//            nameLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20).isActive = true
-//
-//            // Add labels for days, details, and level
-//            let daysLabel = UILabel()
-//            daysLabel.text = "Days: \(exercise.days)"
-//            daysLabel.textAlignment = .center
-//            daysLabel.textColor = .white
-//
-//            let detailsLabel = UILabel()
-//            detailsLabel.text = "Details: \(exercise.details)"
-//            detailsLabel.textAlignment = .center
-//            detailsLabel.textColor = .white
-//
-//            let levelLabel = UILabel()
-//            levelLabel.text = "Level: \(exercise.level)"
-//            levelLabel.textAlignment = .center
-//            levelLabel.textColor = .white
-//
-//            cardView.addSubview(daysLabel)
-//            cardView.addSubview(detailsLabel)
-//            cardView.addSubview(levelLabel)
-//
-//            // Configure daysLabel's constraints
-//            daysLabel.translatesAutoresizingMaskIntoConstraints = false
-//            daysLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
-//            daysLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
-//
-//            // Configure detailsLabel's constraints
-//            detailsLabel.translatesAutoresizingMaskIntoConstraints = false
-//            detailsLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
-//            detailsLabel.topAnchor.constraint(equalTo: daysLabel.bottomAnchor, constant: 10).isActive = true
-//
-//            // Configure levelLabel's constraints
-//            levelLabel.translatesAutoresizingMaskIntoConstraints = false
-//            levelLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
-//            levelLabel.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 10).isActive = true
-//
-//            return cardView
-//        }
-//
-////        fetchRandomExercises { randomExercises in
-////            DispatchQueue.main.async {
-////                for exercise in randomExercises {
-////                    let cardView = createCardView(for: exercise)
-////                    roundviewsix.addSubview(cardView)
-////
-////                    // Configure cardView's constraints
-////                    cardView.translatesAutoresizingMaskIntoConstraints = false
-////                    cardView.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
-////                    cardView.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
-////                    cardView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-////                    cardView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-////                }
-////            }
-////        }
-//
-//        fetchRandomExercises { randomExercises in
-//            DispatchQueue.main.async {
-//                for exercise in randomExercises {
-//                    let cardView = createCardView(for: exercise)
-//                    roundviewsix.addSubview(cardView)
-//
-//                    // Configure cardView's constraints
-//                    cardView.translatesAutoresizingMaskIntoConstraints = false
-//                    cardView.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
-//                    cardView.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor).isActive = true
-//                    cardView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-//                    cardView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-//                }
-//            }
-//        }
-
-        //////////////////////
         
         let roundViewThree = UIView()
         //roundViewThree.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewThree)
         roundViewThree.translatesAutoresizingMaskIntoConstraints = false
-        roundViewThree.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        roundViewThree.heightAnchor.constraint(equalToConstant: 300).isActive = true
         roundViewThree.widthAnchor.constraint(equalToConstant: 350).isActive = true
         roundViewThree.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
         roundViewThree.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
@@ -690,7 +524,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewThree.layer.masksToBounds = true
         
         // Add a background image to roundViewThree
-        let backgroundImage2 = UIImage(named: "meals")
+        let backgroundImage2 = UIImage(named: "dietmeals")
         let backgroundImageView = UIImageView(image: backgroundImage2)
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.contentMode = .scaleAspectFill
@@ -745,14 +579,20 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewFour.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
         stackView.addArrangedSubview(roundViewFour)
         
-        let backgroundImage4 = UIImage(named: "bmicalc")
+        let backgroundImage4 = UIImage(named: "bmiback")
         let backgroundImageView4 = UIImageView(image: backgroundImage4)
         backgroundImageView4.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView4.contentMode = .scaleAspectFit // Set content mode to scale aspect fit
         roundViewFour.addSubview(backgroundImageView4)
         
+        // Add constraints to the background image view to fit inside the roundViewThree view
+        backgroundImageView4.leadingAnchor.constraint(equalTo: roundViewFour.leadingAnchor).isActive = true
+        backgroundImageView4.trailingAnchor.constraint(equalTo: roundViewFour.trailingAnchor).isActive = true
+        backgroundImageView4.topAnchor.constraint(equalTo: roundViewFour.topAnchor).isActive = true
+        backgroundImageView4.bottomAnchor.constraint(equalTo: roundViewFour.bottomAnchor).isActive = true
+        
        
-        roundViewFour.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        roundViewFour.heightAnchor.constraint(equalToConstant: 250).isActive = true
         roundViewFour.widthAnchor.constraint(equalToConstant: 350).isActive = true
         roundViewFour.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
         roundViewFour.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
