@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
         logoImageView.layer.add(animation, forKey: "scaleAnimation")
         
         // Delay the transition to the next screen
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             let nextViewController = ViewController()
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
