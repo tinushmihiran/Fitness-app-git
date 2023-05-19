@@ -171,7 +171,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         let NameLabel: UILabel = {
             let NameLabel = UILabel()
             NameLabel.textColor = .white
-            NameLabel.text = NSLocalizedString("Hi,Tinush", comment: "")
+            NameLabel.text = NSLocalizedString("Hi,", comment: "")
             NameLabel.font = .boldSystemFont(ofSize: 35)
             NameLabel.translatesAutoresizingMaskIntoConstraints = false
             return NameLabel
