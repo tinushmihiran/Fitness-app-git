@@ -161,8 +161,6 @@ class ExerciseListViewController: UIViewController {
         view.addSubview(scrollView)
     }
 }
-
-
 class ExerciseDetailsViewController: UIViewController {
     
     let exercise: Exercise
@@ -181,52 +179,84 @@ class ExerciseDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        // Create and configure the background image view
+                let backgroundImage = UIImageView(image: UIImage(named: "warmbg"))
+                backgroundImage.contentMode = .scaleAspectFill
+                backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+                view.addSubview(backgroundImage)
+        NSLayoutConstraint.activate([
+                    backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+                    backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                    backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                    backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ])
+        
         // Create and configure labels
-               let nameLabel = UILabel()
-               nameLabel.text = exercise.name
+        let titleLabel = UILabel()
+        titleLabel.text = "Exercise Name:"
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.textColor = UIColor.label
+        titleLabel.numberOfLines = 0
+        
+        let nameLabel = UILabel()
+        nameLabel.text = exercise.name
         nameLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         nameLabel.textColor = UIColor.label
         nameLabel.numberOfLines = 0
-               let exercisedifficultyLabel = UILabel()
-        exercisedifficultyLabel.text = exercise.exercisedifficulty
-        exercisedifficultyLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        exercisedifficultyLabel.textColor = UIColor.secondaryLabel
-        exercisedifficultyLabel.numberOfLines = 0
-               
-               let typeLabel = UILabel()
-        typeLabel.text = "Duration: \(exercise.type) seconds"
+        
+        let difficultyTitleLabel = UILabel()
+        difficultyTitleLabel.text = "Difficulty:"
+        difficultyTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        difficultyTitleLabel.textColor = UIColor.label
+        difficultyTitleLabel.numberOfLines = 0
+        
+        let difficultyLabel = UILabel()
+        difficultyLabel.text = exercise.exercisedifficulty
+        difficultyLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        difficultyLabel.textColor = UIColor.secondaryLabel
+        difficultyLabel.numberOfLines = 0
+        
+        let typeTitleLabel = UILabel()
+        typeTitleLabel.text = "Type:"
+        typeTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        typeTitleLabel.textColor = UIColor.label
+        typeTitleLabel.numberOfLines = 0
+        
+        let typeLabel = UILabel()
+        typeLabel.text = "\(exercise.type) "
         typeLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         typeLabel.textColor = UIColor.secondaryLabel
-               
-               let muscleLabel = UILabel()
-        muscleLabel.text = "Repetitions: \(exercise.muscle)"
+        
+        let muscleTitleLabel = UILabel()
+        muscleTitleLabel.text = "Muscle:"
+        muscleTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        muscleTitleLabel.textColor = UIColor.label
+        muscleTitleLabel.numberOfLines = 0
+        
+        let muscleLabel = UILabel()
+        muscleLabel.text = "\(exercise.muscle)"
         muscleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         muscleLabel.textColor = UIColor.secondaryLabel
         muscleLabel.numberOfLines = 0
         
-               if let videoURL = URL(string: exercise.videoURL) {
-                   let request = URLRequest(url: videoURL)
-                   webView.load(request)
-                   webView.translatesAutoresizingMaskIntoConstraints = false
-                   view.addSubview(webView)
-                   
-                   NSLayoutConstraint.activate([
-                       webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                       webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                       webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
-                       webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
-                   ])
-               }
+        // Set up the video view
+        if let videoURL = URL(string: exercise.videoURL) {
+            let request = URLRequest(url: videoURL)
+            webView.load(request)
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(webView)
+            
+            NSLayoutConstraint.activate([
+                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                webView.widthAnchor.constraint(equalToConstant: 320),
+                webView.heightAnchor.constraint(equalToConstant: 240)
+            ])
+        }
         
-               // Add labels to the view
-               view.addSubview(nameLabel)
-               view.addSubview(exercisedifficultyLabel)
-               view.addSubview(typeLabel)
-               view.addSubview(muscleLabel)
-                //view.addSubview(webView)
-
-        // Set up the labels in the view
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, exercisedifficultyLabel, typeLabel, muscleLabel])
+        // Set up the labels and video view in the stack view
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, nameLabel, difficultyTitleLabel, difficultyLabel, typeTitleLabel, typeLabel, muscleTitleLabel, muscleLabel, webView])
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.spacing = 16
@@ -241,11 +271,12 @@ class ExerciseDetailsViewController: UIViewController {
         
         // Set up the "Go Back" button
         goBackButton.setTitle("Go Back", for: .normal)
-        goBackButton.setTitleColor(UIColor.systemBlue, for: .normal)
+        goBackButton.setTitleColor(UIColor.white, for: .normal)
         goBackButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        goBackButton.backgroundColor = UIColor.black
         goBackButton.layer.cornerRadius = 8
         goBackButton.layer.borderWidth = 2
-        goBackButton.layer.borderColor = UIColor.systemBlue.cgColor
+        goBackButton.layer.borderColor = UIColor.white.cgColor
         goBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         goBackButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -254,6 +285,8 @@ class ExerciseDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([
             goBackButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goBackButton.heightAnchor.constraint(equalToConstant: 50),
+            goBackButton.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     

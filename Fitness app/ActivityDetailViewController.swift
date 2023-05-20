@@ -126,16 +126,22 @@ class ActivityDetailViewController: UIViewController, CLLocationManagerDelegate 
         let goBackButton = UIButton(type: .system)
         goBackButton.translatesAutoresizingMaskIntoConstraints = false
         goBackButton.setTitle("Go Back", for: .normal)
-        goBackButton.backgroundColor = .white
+        goBackButton.setTitleColor(.white, for: .normal)
+        goBackButton.backgroundColor = .black
+        goBackButton.layer.cornerRadius = 8
+        goBackButton.layer.borderWidth = 2
+        goBackButton.layer.borderColor = UIColor.white.cgColor
         goBackButton.addTarget(self, action: #selector(goBackButtonTapped), for: .touchUpInside)
         view.addSubview(goBackButton)
 
         NSLayoutConstraint.activate([
             goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             goBackButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            goBackButton.widthAnchor.constraint(equalToConstant: 100),
-            goBackButton.heightAnchor.constraint(equalToConstant: 40)
+            goBackButton.widthAnchor.constraint(equalToConstant: 150),
+            goBackButton.heightAnchor.constraint(equalToConstant: 60)
         ])
+
+
 
         // Set the background image
         let backgroundImage = UIImage(named: "analyzeBG")
