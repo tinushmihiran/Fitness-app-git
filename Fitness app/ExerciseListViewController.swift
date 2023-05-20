@@ -181,7 +181,7 @@ class ExerciseDetailsViewController: UIViewController {
         view.backgroundColor = .white
         
         // Create and configure the background image view
-                let backgroundImage = UIImageView(image: UIImage(named: "warmbg"))
+                let backgroundImage = UIImageView(image: UIImage(named: "exebg"))
                 backgroundImage.contentMode = .scaleAspectFill
                 backgroundImage.translatesAutoresizingMaskIntoConstraints = false
                 view.addSubview(backgroundImage)

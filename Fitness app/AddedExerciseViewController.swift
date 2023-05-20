@@ -182,14 +182,27 @@
         override func viewDidLoad() {
             super.viewDidLoad()
             view.backgroundColor = .white
+            
+            // Create and configure the background image view
+                    let backgroundImage = UIImageView(image: UIImage(named: "exebg"))
+                    backgroundImage.contentMode = .scaleAspectFill
+                    backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+                    view.addSubview(backgroundImage)
+            NSLayoutConstraint.activate([
+                        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+                        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                    ])
             // Create and configure labels
-                   let nameLabel = UILabel()
-                   nameLabel.text = Schedule.name
-            nameLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+            let nameLabel = UILabel()
+            nameLabel.text = Schedule.name
+            nameLabel.font = UIFont.boldSystemFont(ofSize: 30)
             nameLabel.textColor = UIColor.label
             nameLabel.numberOfLines = 0
+            
                    let exercisedifficultyLabel = UILabel()
-            exercisedifficultyLabel.text = Schedule.description
+            exercisedifficultyLabel.text = "Description: \(Schedule.description) "
             exercisedifficultyLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
             exercisedifficultyLabel.textColor = UIColor.secondaryLabel
             exercisedifficultyLabel.numberOfLines = 0
@@ -229,18 +242,17 @@
             
             // Set up the "Go Back" button
             goBackButton.setTitle("Go Back", for: .normal)
-            goBackButton.setTitleColor(UIColor.systemBlue, for: .normal)
+            goBackButton.setTitleColor(UIColor.white, for: .normal)
+            goBackButton.backgroundColor = UIColor.black
             goBackButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
             goBackButton.layer.cornerRadius = 8
-            goBackButton.layer.borderWidth = 2
-            goBackButton.layer.borderColor = UIColor.systemBlue.cgColor
             goBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
             goBackButton.translatesAutoresizingMaskIntoConstraints = false
             
             view.addSubview(goBackButton)
             
             NSLayoutConstraint.activate([
-                goBackButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+                goBackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
                 goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             ])
         }
