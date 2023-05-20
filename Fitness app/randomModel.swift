@@ -12,7 +12,7 @@ struct Exercisess {
     let level: String
     let details: String
     let days: String
-    //var imageUrl: String
+    var videoURL: String
     
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data()
@@ -20,6 +20,6 @@ struct Exercisess {
         level = snapshotValue["level"] as! String
         details = snapshotValue["details"] as! String
         days = snapshotValue["days"] as! String
-        //imageUrl = snapshotValue["imageUrl"] as! String
+        videoURL = snapshotValue["videoURL"] as! String
     }
 }

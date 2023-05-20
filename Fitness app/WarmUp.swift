@@ -12,13 +12,15 @@ struct WARMUP {
     let WarmUpdescription: String
     let duration: String
     let repetitions: String
-    
+    var videoURL: String
+
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data()
         name = snapshotValue["name"] as! String
         WarmUpdescription = snapshotValue["WarmUpdescription"] as! String
         duration = snapshotValue["duration"] as! String
         repetitions = snapshotValue["repetitions"] as! String
+        videoURL = snapshotValue["videoURL"] as! String
     }
 }
 

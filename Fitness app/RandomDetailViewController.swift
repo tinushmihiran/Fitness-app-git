@@ -6,9 +6,11 @@
 //
 import UIKit
 import Firebase
+import WebKit
 
 class RandomDetailViewController: UIViewController {
-    
+    let webView = WKWebView()
+
     // Firebase Firestore reference
     let db = Firestore.firestore()
     
@@ -97,6 +99,19 @@ class RandomDetailViewController: UIViewController {
         muscleLabel.numberOfLines = 0
         muscleLabel.translatesAutoresizingMaskIntoConstraints = false
       
+        if let videoURL = URL(string: exercise.videoURL) {
+            let request = URLRequest(url: videoURL)
+            webView.load(request)
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(webView)
+            
+            NSLayoutConstraint.activate([
+                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
+                webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
+            ])
+            
         
         // Add labels to the view
         view.addSubview(nameLabel)
@@ -142,4 +157,5 @@ class RandomDetailViewController: UIViewController {
     }
 
 
+}
 }

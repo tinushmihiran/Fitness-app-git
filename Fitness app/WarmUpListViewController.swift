@@ -7,6 +7,7 @@
 //
 import UIKit
 import Firebase
+import WebKit
 
 class WarmUpListViewController: UIViewController {
     
@@ -166,7 +167,8 @@ class CardDetailsViewController: UIViewController {
     
     let warmUp: WARMUP
     let goBackButton = UIButton()
-    
+    let webView = WKWebView()
+
     init(warmUp: WARMUP) {
         self.warmUp = warmUp
         super.init(nibName: nil, bundle: nil)
@@ -202,7 +204,18 @@ class CardDetailsViewController: UIViewController {
         repetitionsLabel.textColor = UIColor.secondaryLabel
         repetitionsLabel.numberOfLines = 0
         
-               
+        if let videoURL = URL(string: warmUp.videoURL) {
+            let request = URLRequest(url: videoURL)
+            webView.load(request)
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(webView)
+            
+            NSLayoutConstraint.activate([
+                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
+                webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
+            ])
                // Add labels to the view
                view.addSubview(nameLabel)
                view.addSubview(descriptionLabel)
@@ -241,7 +254,7 @@ class CardDetailsViewController: UIViewController {
             goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
-    
+    }
     @objc func goBack() {
         navigationController?.popViewController(animated: true)
     }

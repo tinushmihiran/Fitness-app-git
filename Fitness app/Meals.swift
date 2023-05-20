@@ -12,6 +12,7 @@ struct Foods {
     let ingredients: String
     let servings: String
     let instructions: String
+    var videoURL: String
     
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data()
@@ -19,5 +20,6 @@ struct Foods {
         ingredients = snapshotValue["ingredients"] as! String
         servings = snapshotValue["servings"] as! String
         instructions = snapshotValue["instructions"] as! String
+        videoURL = snapshotValue["videoURL"] as! String
     }
 }
