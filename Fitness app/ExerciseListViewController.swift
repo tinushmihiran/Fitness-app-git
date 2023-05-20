@@ -204,21 +204,6 @@ class ExerciseDetailsViewController: UIViewController {
         muscleLabel.textColor = UIColor.secondaryLabel
         muscleLabel.numberOfLines = 0
         
-//        // Set up the WKWebView
-//             let videoURL = URL(string: "https://youtu.be/iSSAk4XCsRA")
-//             let request = URLRequest(url: videoURL!)
-//             webView.load(request)
-//             webView.translatesAutoresizingMaskIntoConstraints = false
-//             view.addSubview(webView)
-//
-//             NSLayoutConstraint.activate([
-//                 webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//                 webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//                 webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
-//                 webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
-//             ])
-        
-        // Set up the WKWebView
                if let videoURL = URL(string: exercise.videoURL) {
                    let request = URLRequest(url: videoURL)
                    webView.load(request)
