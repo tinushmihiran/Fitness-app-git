@@ -511,6 +511,79 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             button.centerYAnchor.constraint(equalTo: roundviewsix.centerYAnchor)
         ])
 
+        //add round view seven
+        
+        let roundviewseven = UIView()
+        roundviewseven.backgroundColor = .white
+        stackView.addArrangedSubview(roundviewseven)
+        
+        roundviewseven.translatesAutoresizingMaskIntoConstraints = false
+        roundviewseven.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        roundviewseven.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        roundviewseven.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30).isActive = true
+        roundviewseven.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
+        roundviewseven.layer.cornerRadius = 30
+        roundviewseven.layer.masksToBounds = true
+        
+        // Add title label to roundviewseven
+        let titleLabelAdd = UILabel()
+        titleLabelAdd.text = "Create Schedule"
+        titleLabelAdd.textAlignment = .center
+        titleLabelAdd.textColor = .black
+        titleLabelAdd.font = UIFont.boldSystemFont(ofSize: 38)
+        roundviewseven.addSubview(titleLabelAdd) // Add the titleLabelAdd to roundviewseven, not titleLabelAdd itself
+
+        // Configure titleLabel's constraints
+        titleLabelAdd.translatesAutoresizingMaskIntoConstraints = false
+        titleLabelAdd.centerXAnchor.constraint(equalTo: roundviewseven.centerXAnchor).isActive = true
+        titleLabelAdd.topAnchor.constraint(equalTo: roundviewseven.topAnchor, constant: 20).isActive = true
+        
+        
+        // Create the button
+        let buttonSchedule: UIButton = {
+            let buttonSchedule = UIButton(type: .system)
+            buttonSchedule.translatesAutoresizingMaskIntoConstraints = false
+            buttonSchedule.setTitleColor(.white , for: .normal)
+            buttonSchedule.setTitle("Add", for: .normal)
+            buttonSchedule.addTarget(self, action: #selector(scheduleBtnTap), for: .touchUpInside)
+            buttonSchedule.backgroundColor = .black
+            buttonSchedule.layer.cornerRadius = 20
+            buttonSchedule.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            return buttonSchedule
+        }()
+        roundviewseven.addSubview(buttonSchedule)
+        
+        // Configure button's constraints
+        let constraints = [
+            buttonSchedule.centerXAnchor.constraint(equalTo: roundviewseven.centerXAnchor),
+            buttonSchedule.widthAnchor.constraint(equalToConstant: 120),
+            buttonSchedule.heightAnchor.constraint(equalToConstant: 50),
+            buttonSchedule.centerYAnchor.constraint(equalTo: roundviewseven.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+        
+        let viewAddedExercisesButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitleColor(.white, for: .normal)
+            button.setTitle("View Added Exercises", for: .normal)
+            button.addTarget(self, action: #selector(viewAddedExercisesButtonTapped), for: .touchUpInside)
+            button.backgroundColor = .black
+            button.layer.cornerRadius = 20
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            return button
+        }()
+        roundviewseven.addSubview(viewAddedExercisesButton)
+        
+        let buttonConstraints = [
+            viewAddedExercisesButton.centerXAnchor.constraint(equalTo: roundviewseven.centerXAnchor),
+            viewAddedExercisesButton.widthAnchor.constraint(equalToConstant: 200),
+            viewAddedExercisesButton.heightAnchor.constraint(equalToConstant: 50),
+            viewAddedExercisesButton.topAnchor.constraint(equalTo: buttonSchedule.bottomAnchor, constant: 20)
+        ]
+        NSLayoutConstraint.activate(buttonConstraints)
+        
+        
         
         let roundViewThree = UIView()
         //roundViewThree.backgroundColor = UIColor(white: 0.5, alpha: 0.25)
@@ -703,7 +776,17 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
    
     }
+    @objc func viewAddedExercisesButtonTapped() {
+        let addedExerciseVC = AddedExerciseViewController()
+        // Add any necessary configuration or data passing to the `AddedExerciseViewController`
+        navigationController?.pushViewController(addedExerciseVC, animated: true)
+    }
+
     
+    @objc func scheduleBtnTap() {
+        let nextViewController = AddScheduleViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
     @objc func navigateButtonTapped() {
         let nextViewController = RandomDetailViewController()
         navigationController?.pushViewController(nextViewController, animated: true)

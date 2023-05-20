@@ -20,6 +20,9 @@
 		03739ACB2A113BBF00BEAE33 /* WarmUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03739ACA2A113BBF00BEAE33 /* WarmUp.swift */; };
 		0373B3412A10D599007729D0 /* WarmUpListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B3402A10D599007729D0 /* WarmUpListViewController.swift */; };
 		03B3ADC72A10AC2C00BE01E8 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B3ADC62A10AC2C00BE01E8 /* Exercise.swift */; };
+		03C2185E2A18B23B00C58637 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2185D2A18B23B00C58637 /* AddScheduleViewController.swift */; };
+		03C218612A18CE0900C58637 /* AddedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C218602A18CE0900C58637 /* AddedExerciseViewController.swift */; };
+		03C218642A18D09900C58637 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C218632A18D09900C58637 /* ScheduleModel.swift */; };
 		03E5D3FA2A0BB0B400C0F969 /* BMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */; };
 		03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB15662A0A58D700570784 /* AppDelegate.swift */; };
 		03EB15692A0A58D700570784 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EB15682A0A58D700570784 /* SceneDelegate.swift */; };
@@ -49,6 +52,9 @@
 		03739ACA2A113BBF00BEAE33 /* WarmUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmUp.swift; sourceTree = "<group>"; };
 		0373B3402A10D599007729D0 /* WarmUpListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmUpListViewController.swift; sourceTree = "<group>"; };
 		03B3ADC62A10AC2C00BE01E8 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		03C2185D2A18B23B00C58637 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
+		03C218602A18CE0900C58637 /* AddedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedExerciseViewController.swift; sourceTree = "<group>"; };
+		03C218632A18D09900C58637 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
 		03EB15632A0A58D700570784 /* Fitness app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03EB15662A0A58D700570784 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 				0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */,
 				031043372A169DB50068781D /* RandomDetailViewController.swift */,
 				0310433B2A16AA1B0068781D /* RandomModel.swift */,
+				03C2185D2A18B23B00C58637 /* AddScheduleViewController.swift */,
+				03C218602A18CE0900C58637 /* AddedExerciseViewController.swift */,
+				03C218632A18D09900C58637 /* ScheduleModel.swift */,
 			);
 			path = "Fitness app";
 			sourceTree = "<group>";
@@ -210,14 +219,17 @@
 				03739AC52A11145E00BEAE33 /* MealsListViewController.swift in Sources */,
 				031043272A15DBE00068781D /* ProfileViewController.swift in Sources */,
 				03EB15672A0A58D700570784 /* AppDelegate.swift in Sources */,
+				03C2185E2A18B23B00C58637 /* AddScheduleViewController.swift in Sources */,
 				0310433C2A16AA1B0068781D /* RandomModel.swift in Sources */,
 				0310432A2A15E9AC0068781D /* WelcomeViewController.swift in Sources */,
+				03C218642A18D09900C58637 /* ScheduleModel.swift in Sources */,
 				0310432D2A15EB310068781D /* ProfileDetailGetViewController.swift in Sources */,
 				03611D8A2A1226D10088B939 /* ExerciseDetailViewController.swift in Sources */,
 				03739AC82A11149A00BEAE33 /* Meals.swift in Sources */,
 				0358E1252A13E55E00ED554A /* ActivityDetailViewController.swift in Sources */,
 				03B3ADC72A10AC2C00BE01E8 /* Exercise.swift in Sources */,
 				03F0DDEC2A0CA5C400D64E92 /* ExerciseListViewController.swift in Sources */,
+				03C218612A18CE0900C58637 /* AddedExerciseViewController.swift in Sources */,
 				03EB15692A0A58D700570784 /* SceneDelegate.swift in Sources */,
 				03EB15812A0A5AB600570784 /* ExerciseViewController.swift in Sources */,
 				031043382A169DB50068781D /* RandomDetailViewController.swift in Sources */,
