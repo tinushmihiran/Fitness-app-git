@@ -40,7 +40,7 @@ class ExerciseListViewController: UIViewController {
         
         // Add background image to the view
                 let backgroundImage = UIImageView(frame: view.bounds)
-                backgroundImage.image = UIImage(named: "RoundViewOne") // Replace "your-background-image" with the actual image name
+                backgroundImage.image = UIImage(named: "exerciseback")
                 backgroundImage.contentMode = .scaleAspectFill
                 view.addSubview(backgroundImage)
                 view.sendSubviewToBack(backgroundImage)

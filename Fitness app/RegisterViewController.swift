@@ -110,11 +110,10 @@
                 guard let strongSelf = self else { return }
                 if error != nil {
                     // Show an error message if user registration failed
-                    strongSelf.showErrorAlertRegister(withMessage: "User registration failed")
+                    print("User registration falied")
                 } else {
                     // User registration successful
                     print("User registration successful")
-                    strongSelf.showErrorAlertRegister(withMessage: "User registration successful")
                     let nextVC = WelcomeViewController()
                     strongSelf.navigationController?.pushViewController(nextVC, animated: true)
                 }
@@ -140,10 +139,7 @@
             return RegisterBtn
         }()
         
-        
 
-     
-      
     }
 
 

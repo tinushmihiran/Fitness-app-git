@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
         ])
         
         // Animate the logo or any other view
-        let logoImageView = UIImageView(image: UIImage(named: "splash"))
+        let logoImageView = UIImageView(image: UIImage(named: "logogym"))
         logoImageView.contentMode = .scaleAspectFit
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoImageView)
@@ -41,8 +41,8 @@ class HomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200),
-            logoImageView.heightAnchor.constraint(equalToConstant: 200)
+            logoImageView.widthAnchor.constraint(equalToConstant: 300),
+            logoImageView.heightAnchor.constraint(equalToConstant:300)
         ])
         
         // Apply animation to the logo

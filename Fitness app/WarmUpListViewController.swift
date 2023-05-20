@@ -40,7 +40,7 @@ class WarmUpListViewController: UIViewController {
         
         // Add background image to the view
                 let backgroundImage = UIImageView(frame: view.bounds)
-                backgroundImage.image = UIImage(named: "RoundViewOne") // Replace "your-background-image" with the actual image name
+                backgroundImage.image = UIImage(named: "warmupback")
                 backgroundImage.contentMode = .scaleAspectFill
                 view.addSubview(backgroundImage)
                 view.sendSubviewToBack(backgroundImage)
@@ -164,7 +164,7 @@ class WarmUpListViewController: UIViewController {
 
 
 class CardDetailsViewController: UIViewController {
-    
+
     let warmUp: WARMUP
     let goBackButton = UIButton()
     let webView = WKWebView()
@@ -173,88 +173,135 @@ class CardDetailsViewController: UIViewController {
         self.warmUp = warmUp
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        // Create and configure the background image view
+                let backgroundImage = UIImageView(image: UIImage(named: "warmbg"))
+                backgroundImage.contentMode = .scaleAspectFill
+                backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+                view.addSubview(backgroundImage)
+        NSLayoutConstraint.activate([
+                    backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+                    backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                    backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                    backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ])
+
         // Create and configure labels
-               let nameLabel = UILabel()
-               nameLabel.text = warmUp.name
-        nameLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        let nameLabel = UILabel()
+        nameLabel.text = "Name:"
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         nameLabel.textColor = UIColor.label
         nameLabel.numberOfLines = 0
-               let descriptionLabel = UILabel()
-               descriptionLabel.text = warmUp.WarmUpdescription
+
+        let nameValueLabel = UILabel()
+        nameValueLabel.text = warmUp.name
+        nameValueLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        nameValueLabel.textColor = UIColor.label
+        nameValueLabel.numberOfLines = 0
+
+        let descriptionTitleLabel = UILabel()
+        descriptionTitleLabel.text = "Description:"
+        descriptionTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        descriptionTitleLabel.textColor = UIColor.label
+        descriptionTitleLabel.numberOfLines = 0
+
+        let descriptionLabel = UILabel()
+        descriptionLabel.text = warmUp.WarmUpdescription
         descriptionLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         descriptionLabel.textColor = UIColor.secondaryLabel
         descriptionLabel.numberOfLines = 0
-               
-               let durationLabel = UILabel()
-               durationLabel.text = "Duration: \(warmUp.duration) seconds"
+
+        let durationTitleLabel = UILabel()
+        durationTitleLabel.text = "Duration:"
+        durationTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        durationTitleLabel.textColor = UIColor.label
+        durationTitleLabel.numberOfLines = 0
+
+        let durationLabel = UILabel()
+        durationLabel.text = "\(warmUp.duration) seconds"
         durationLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         durationLabel.textColor = UIColor.secondaryLabel
-               
-               let repetitionsLabel = UILabel()
-               repetitionsLabel.text = "Repetitions: \(warmUp.repetitions)"
+
+        let repetitionsTitleLabel = UILabel()
+        repetitionsTitleLabel.text = "Repetitions:"
+        repetitionsTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        repetitionsTitleLabel.textColor = UIColor.label
+        repetitionsTitleLabel.numberOfLines = 0
+
+        let repetitionsLabel = UILabel()
+        repetitionsLabel.text = "\(warmUp.repetitions)"
         repetitionsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         repetitionsLabel.textColor = UIColor.secondaryLabel
         repetitionsLabel.numberOfLines = 0
-        
-        if let videoURL = URL(string: warmUp.videoURL) {
-            let request = URLRequest(url: videoURL)
-            webView.load(request)
-            webView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(webView)
-            
-            NSLayoutConstraint.activate([
-                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
-                webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
-            ])
-               // Add labels to the view
-               view.addSubview(nameLabel)
-               view.addSubview(descriptionLabel)
-               view.addSubview(durationLabel)
-               view.addSubview(repetitionsLabel)
-               
 
         // Set up the labels in the view
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, descriptionLabel, durationLabel, repetitionsLabel])
+        let stackView = UIStackView(arrangedSubviews: [
+            nameLabel,
+            nameValueLabel,
+            descriptionTitleLabel,
+            descriptionLabel,
+            durationTitleLabel,
+            durationLabel,
+            repetitionsTitleLabel,
+            repetitionsLabel
+        ])
+
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         view.addSubview(stackView)
+
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
-        
+
+        // Set up the video view
+        if let videoURL = URL(string: warmUp.videoURL) {
+            let request = URLRequest(url: videoURL)
+            webView.load(request)
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(webView)
+
+            NSLayoutConstraint.activate([
+                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                webView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 32),
+                webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
+                webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
+            ])
+        }
+
         // Set up the "Go Back" button
-        goBackButton.setTitle("Go Back", for: .normal)
-        goBackButton.setTitleColor(UIColor.systemBlue, for: .normal)
-        goBackButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        goBackButton.layer.cornerRadius = 8
-        goBackButton.layer.borderWidth = 2
-        goBackButton.layer.borderColor = UIColor.systemBlue.cgColor
-        goBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        goBackButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(goBackButton)
-        
-        NSLayoutConstraint.activate([
-            goBackButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
-            goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        ])
+                goBackButton.setTitle("Go Back", for: .normal)
+                goBackButton.setTitleColor(UIColor.white, for: .normal)
+                goBackButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+                goBackButton.backgroundColor = UIColor.black
+                goBackButton.layer.cornerRadius = 8
+                goBackButton.layer.borderWidth = 2
+                goBackButton.layer.borderColor = UIColor.white.cgColor
+                goBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+                goBackButton.translatesAutoresizingMaskIntoConstraints = false
+
+                view.addSubview(goBackButton)
+
+                NSLayoutConstraint.activate([
+                    goBackButton.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 32),
+                    goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    goBackButton.heightAnchor.constraint(equalToConstant: 50), // Adjust the height as needed
+                    goBackButton.widthAnchor.constraint(equalToConstant: 200) // Adjust the width as needed
+                ])
     }
-    }
+
     @objc func goBack() {
         navigationController?.popViewController(animated: true)
     }
