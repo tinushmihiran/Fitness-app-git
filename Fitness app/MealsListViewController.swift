@@ -163,99 +163,255 @@ class MealsListViewController: UIViewController {
 }
 
 
+//class FoodDetailsViewController: UIViewController {
+//
+//    let food: Foods
+//    let goBackButton = UIButton()
+//    let webView = WKWebView()
+//
+//    init(food: Foods) {
+//        self.food = food
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = .white
+//        // Create and configure labels
+//               let titleLabel = UILabel()
+//        titleLabel.text = food.title
+//        titleLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+//        titleLabel.textColor = UIColor.label
+//        titleLabel.numberOfLines = 0
+//               let ingredientsLabel = UILabel()
+//        ingredientsLabel.text = food.ingredients
+//        ingredientsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+//        ingredientsLabel.textColor = UIColor.secondaryLabel
+//        ingredientsLabel.numberOfLines = 0
+//
+//               let servingsLabel = UILabel()
+//        servingsLabel.text = "servings: \(food.servings) "
+//        servingsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+//        servingsLabel.textColor = UIColor.secondaryLabel
+//
+//               let instructionsLabel = UILabel()
+//        instructionsLabel.text = "instructions: \(food.instructions)"
+//        instructionsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+//        instructionsLabel.textColor = UIColor.secondaryLabel
+//        instructionsLabel.numberOfLines = 0
+//
+//        if let videoURL = URL(string: food.videoURL) {
+//            let request = URLRequest(url: videoURL)
+//            webView.load(request)
+//            webView.translatesAutoresizingMaskIntoConstraints = false
+//            view.addSubview(webView)
+//
+//            NSLayoutConstraint.activate([
+//                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//                webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//                webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
+//                webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
+//            ])
+//
+//               // Add labels to the view
+//               view.addSubview(titleLabel)
+//               view.addSubview(ingredientsLabel)
+//               view.addSubview(ingredientsLabel)
+//               view.addSubview(instructionsLabel)
+//
+//
+//        // Set up the labels in the view
+//        let stackView = UIStackView(arrangedSubviews: [titleLabel, ingredientsLabel, ingredientsLabel, instructionsLabel])
+//        stackView.axis = .vertical
+//        stackView.alignment = .leading
+//        stackView.spacing = 16
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        view.addSubview(stackView)
+//        NSLayoutConstraint.activate([
+//            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+//            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+//        ])
+//
+//        // Set up the "Go Back" button
+//        goBackButton.setTitle("Go Back", for: .normal)
+//        goBackButton.setTitleColor(UIColor.systemBlue, for: .normal)
+//        goBackButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+//        goBackButton.layer.cornerRadius = 8
+//        goBackButton.layer.borderWidth = 2
+//        goBackButton.layer.borderColor = UIColor.systemBlue.cgColor
+//        goBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+//        goBackButton.translatesAutoresizingMaskIntoConstraints = false
+//
+//        view.addSubview(goBackButton)
+//
+//        NSLayoutConstraint.activate([
+//            goBackButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+//            goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//        ])
+//    }
+//    }
+//    @objc func goBack() {
+//        navigationController?.popViewController(animated: true)
+//    }
+//}
+
 class FoodDetailsViewController: UIViewController {
-    
+
     let food: Foods
     let goBackButton = UIButton()
     let webView = WKWebView()
+    let scrollView = UIScrollView()
+    let contentView = UIView()
 
     init(food: Foods) {
         self.food = food
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+
+        // Set up the scroll view
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        // Set up the content view inside the scroll view
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+
         // Create and configure labels
-               let titleLabel = UILabel()
-        titleLabel.text = food.title
-        titleLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        let titleLabel = UILabel()
+        titleLabel.text = "Title:"
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         titleLabel.textColor = UIColor.label
         titleLabel.numberOfLines = 0
-               let ingredientsLabel = UILabel()
+
+        let titleLabelContent = UILabel()
+        titleLabelContent.text = food.title
+        titleLabelContent.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        titleLabelContent.textColor = UIColor.label
+        titleLabelContent.numberOfLines = 0
+
+        let ingredientsTitleLabel = UILabel()
+        ingredientsTitleLabel.text = "Ingredients:"
+        ingredientsTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        ingredientsTitleLabel.textColor = UIColor.label
+        ingredientsTitleLabel.numberOfLines = 0
+
+        let ingredientsLabel = UILabel()
         ingredientsLabel.text = food.ingredients
         ingredientsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         ingredientsLabel.textColor = UIColor.secondaryLabel
         ingredientsLabel.numberOfLines = 0
-               
-               let servingsLabel = UILabel()
-        servingsLabel.text = "servings: \(food.servings) "
+
+        let servingsTitleLabel = UILabel()
+        servingsTitleLabel.text = "Servings:"
+        servingsTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        servingsTitleLabel.textColor = UIColor.label
+        servingsTitleLabel.numberOfLines = 0
+
+        let servingsLabel = UILabel()
+        servingsLabel.text = "\(food.servings)"
         servingsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         servingsLabel.textColor = UIColor.secondaryLabel
-               
-               let instructionsLabel = UILabel()
-        instructionsLabel.text = "instructions: \(food.instructions)"
+
+        let instructionsTitleLabel = UILabel()
+        instructionsTitleLabel.text = "Instructions:"
+        instructionsTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        instructionsTitleLabel.textColor = UIColor.label
+        instructionsTitleLabel.numberOfLines = 0
+
+        let instructionsLabel = UILabel()
+        instructionsLabel.text = food.instructions
         instructionsLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         instructionsLabel.textColor = UIColor.secondaryLabel
         instructionsLabel.numberOfLines = 0
-        
-        if let videoURL = URL(string: food.videoURL) {
-            let request = URLRequest(url: videoURL)
-            webView.load(request)
-            webView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(webView)
-            
-            NSLayoutConstraint.activate([
-                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                webView.widthAnchor.constraint(equalToConstant: 320), // Adjust the width as needed
-                webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
-            ])
-            
-               // Add labels to the view
-               view.addSubview(titleLabel)
-               view.addSubview(ingredientsLabel)
-               view.addSubview(ingredientsLabel)
-               view.addSubview(instructionsLabel)
-               
 
-        // Set up the labels in the view
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, ingredientsLabel, ingredientsLabel, instructionsLabel])
+        // Add labels to the content view
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(titleLabelContent)
+        contentView.addSubview(ingredientsTitleLabel)
+        contentView.addSubview(ingredientsLabel)
+        contentView.addSubview(servingsTitleLabel)
+        contentView.addSubview(servingsLabel)
+        contentView.addSubview(instructionsTitleLabel)
+        contentView.addSubview(instructionsLabel)
+
+        // Set up the labels in the content view
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, titleLabelContent, ingredientsTitleLabel, ingredientsLabel, servingsTitleLabel, servingsLabel, instructionsTitleLabel, instructionsLabel])
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(stackView)
+
+        contentView.addSubview(stackView)
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
-        
+
+        // Set up the video
+        if let videoURL = URL(string: food.videoURL) {
+            let request = URLRequest(url: videoURL)
+            webView.load(request)
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(webView)
+
+            NSLayoutConstraint.activate([
+                webView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+                webView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+                webView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+                webView.heightAnchor.constraint(equalToConstant: 240) // Adjust the height as needed
+            ])
+        }
+
         // Set up the "Go Back" button
         goBackButton.setTitle("Go Back", for: .normal)
-        goBackButton.setTitleColor(UIColor.systemBlue, for: .normal)
+        goBackButton.setTitleColor(UIColor.white, for: .normal)
         goBackButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        goBackButton.backgroundColor = UIColor.black
         goBackButton.layer.cornerRadius = 8
         goBackButton.layer.borderWidth = 2
-        goBackButton.layer.borderColor = UIColor.systemBlue.cgColor
+        goBackButton.layer.borderColor = UIColor.white.cgColor
         goBackButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         goBackButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(goBackButton)
-        
+
+        contentView.addSubview(goBackButton)
+
         NSLayoutConstraint.activate([
-            goBackButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
-            goBackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goBackButton.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 16),
+            goBackButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            goBackButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            goBackButton.heightAnchor.constraint(equalToConstant: 50),
+            goBackButton.widthAnchor.constraint(equalToConstant: 120)
         ])
     }
-    }
+
     @objc func goBack() {
         navigationController?.popViewController(animated: true)
     }
