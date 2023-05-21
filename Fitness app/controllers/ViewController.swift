@@ -173,6 +173,7 @@ class ViewController: UIViewController {
         password.font = .systemFont(ofSize: 20)
         password.backgroundColor = .white
         password.borderStyle = .roundedRect
+        password.isSecureTextEntry = true
         password.translatesAutoresizingMaskIntoConstraints = false
         return password
     }()

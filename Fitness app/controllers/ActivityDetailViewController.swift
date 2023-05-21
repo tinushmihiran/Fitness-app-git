@@ -209,8 +209,14 @@ class ActivityDetailViewController: UIViewController, CLLocationManagerDelegate 
     
 
     @objc private func goBackButtonTapped() {
-        // Dismiss the current view controller
-        navigationController?.popViewController(animated: true)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        view.window?.layer.add(transition, forKey: kCATransition)
+
+        navigationController?.popViewController(animated: false)
     }
 
     private func setupLabels() {

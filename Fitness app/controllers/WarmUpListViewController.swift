@@ -47,7 +47,14 @@ class WarmUpListViewController: UIViewController {
     }
     
     @objc func goButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        view.window?.layer.add(transition, forKey: kCATransition)
+
+        navigationController?.popViewController(animated: false)
     }
     
     @objc func cardTapped(_ sender: UITapGestureRecognizer) {
@@ -182,7 +189,7 @@ class CardDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         // Create and configure the background image view
-                let backgroundImage = UIImageView(image: UIImage(named: "warmbg"))
+                let backgroundImage = UIImageView(image: UIImage(named: "warmbg2"))
                 backgroundImage.contentMode = .scaleAspectFill
                 backgroundImage.translatesAutoresizingMaskIntoConstraints = false
                 view.addSubview(backgroundImage)
@@ -303,6 +310,13 @@ class CardDetailsViewController: UIViewController {
     }
 
     @objc func goBack() {
-        navigationController?.popViewController(animated: true)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        view.window?.layer.add(transition, forKey: kCATransition)
+
+        navigationController?.popViewController(animated: false)
     }
 }

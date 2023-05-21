@@ -228,7 +228,7 @@
         RegisterPassword.font = .systemFont(ofSize: 20)
         RegisterPassword.backgroundColor = .white
         RegisterPassword.borderStyle = .roundedRect
-        
+        RegisterPassword.isSecureTextEntry = true
         RegisterPassword.translatesAutoresizingMaskIntoConstraints = false
         return RegisterPassword
     }()
