@@ -35,6 +35,7 @@
 		03EB158E2A0A62F400570784 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 03EB158D2A0A62F400570784 /* FirebaseDatabase */; };
 		03EB15902A0A62F400570784 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03EB158F2A0A62F400570784 /* FirebaseFirestore */; };
 		03F0DDEC2A0CA5C400D64E92 /* ExerciseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0DDEB2A0CA5C400D64E92 /* ExerciseListViewController.swift */; };
+		03F542BB2A19E834003C33F8 /* AllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F542BA2A19E834003C33F8 /* AllSetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		03EB157E2A0A5AB600570784 /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		03EB15872A0A5E7F00570784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03F0DDEB2A0CA5C400D64E92 /* ExerciseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewController.swift; sourceTree = "<group>"; };
+		03F542BA2A19E834003C33F8 /* AllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,24 +102,40 @@
 		03EB15652A0A58D700570784 /* Fitness app */ = {
 			isa = PBXGroup;
 			children = (
-				031043292A15E9AC0068781D /* WelcomeViewController.swift */,
+				03F542B72A19E31C003C33F8 /* controllers */,
+				03F542B52A19E2D6003C33F8 /* models */,
 				03EB15872A0A5E7F00570784 /* GoogleService-Info.plist */,
+				03EB15662A0A58D700570784 /* AppDelegate.swift */,
+				03EB15682A0A58D700570784 /* SceneDelegate.swift */,
+				03EB156F2A0A58D900570784 /* Assets.xcassets */,
+				03EB15742A0A58D900570784 /* Info.plist */,
+			);
+			path = "Fitness app";
+			sourceTree = "<group>";
+		};
+		03F542B52A19E2D6003C33F8 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				03B3ADC62A10AC2C00BE01E8 /* Exercise.swift */,
+				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
+				03739AC72A11149A00BEAE33 /* Meals.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		03F542B72A19E31C003C33F8 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				031043292A15E9AC0068781D /* WelcomeViewController.swift */,
 				03EB157E2A0A5AB600570784 /* ExerciseViewController.swift */,
 				03EB157C2A0A5AB600570784 /* HomeViewController.swift */,
 				03EB157D2A0A5AB600570784 /* RegisterViewController.swift */,
-				03EB15662A0A58D700570784 /* AppDelegate.swift */,
-				03EB15682A0A58D700570784 /* SceneDelegate.swift */,
 				03EB156A2A0A58D700570784 /* ViewController.swift */,
-				03EB156F2A0A58D900570784 /* Assets.xcassets */,
-				03EB15742A0A58D900570784 /* Info.plist */,
 				03E5D3F92A0BB0B400C0F969 /* BMIViewController.swift */,
 				03F0DDEB2A0CA5C400D64E92 /* ExerciseListViewController.swift */,
 				0368D17B2A0DECC10038C37A /* StopwatchViewController.swift */,
-				03B3ADC62A10AC2C00BE01E8 /* Exercise.swift */,
 				0373B3402A10D599007729D0 /* WarmUpListViewController.swift */,
 				03739AC42A11145E00BEAE33 /* MealsListViewController.swift */,
-				03739AC72A11149A00BEAE33 /* Meals.swift */,
-				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
 				0358E1242A13E55E00ED554A /* ActivityDetailViewController.swift */,
 				031043262A15DBE00068781D /* ProfileViewController.swift */,
 				0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */,
@@ -126,8 +144,9 @@
 				03C2185D2A18B23B00C58637 /* AddScheduleViewController.swift */,
 				03C218602A18CE0900C58637 /* AddedExerciseViewController.swift */,
 				03C218632A18D09900C58637 /* ScheduleModel.swift */,
+				03F542BA2A19E834003C33F8 /* AllSetViewController.swift */,
 			);
-			path = "Fitness app";
+			path = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +243,7 @@
 				03739AC82A11149A00BEAE33 /* Meals.swift in Sources */,
 				0358E1252A13E55E00ED554A /* ActivityDetailViewController.swift in Sources */,
 				03B3ADC72A10AC2C00BE01E8 /* Exercise.swift in Sources */,
+				03F542BB2A19E834003C33F8 /* AllSetViewController.swift in Sources */,
 				03F0DDEC2A0CA5C400D64E92 /* ExerciseListViewController.swift in Sources */,
 				03C218612A18CE0900C58637 /* AddedExerciseViewController.swift in Sources */,
 				03EB15692A0A58D700570784 /* SceneDelegate.swift in Sources */,

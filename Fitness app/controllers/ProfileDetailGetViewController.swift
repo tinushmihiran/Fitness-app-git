@@ -94,7 +94,7 @@ class ProfileDetailGetViewController: UIViewController, UIPickerViewDelegate {
         
         // Title Label for Activity Level
         let activityLevelTitleLabel = UILabel()
-        activityLevelTitleLabel.text = "Activity Level"
+        activityLevelTitleLabel.text = "Experience Level"
         activityLevelTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         activityLevelTitleLabel.textAlignment = .center
         activityLevelTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -111,6 +111,8 @@ class ProfileDetailGetViewController: UIViewController, UIPickerViewDelegate {
         nextButton.setTitle("Next", for: .normal)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.backgroundColor = .black
+        nextButton.setTitleColor(.white, for: .normal)
         view.addSubview(nextButton)
         
         // Constraints
@@ -145,8 +147,10 @@ class ProfileDetailGetViewController: UIViewController, UIPickerViewDelegate {
             activityLevelSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityLevelSegmentedControl.topAnchor.constraint(equalTo: activityLevelTitleLabel.bottomAnchor, constant: 10),
 
-            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.topAnchor.constraint(equalTo: activityLevelSegmentedControl.bottomAnchor, constant: 40)
+            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            nextButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         // Add tap gesture recognizer to dismiss the keyboard
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardprofile))
@@ -191,7 +195,7 @@ class ProfileDetailGetViewController: UIViewController, UIPickerViewDelegate {
             } else {
                 print("Profile saved successfully")
                 // Navigate to the next screen (ExerciseViewController)
-                let exerciseVC = ExerciseViewController()
+                let exerciseVC = AllSetViewController()
                 self.navigationController?.pushViewController(exerciseVC, animated: true)
             }
         }

@@ -391,7 +391,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundViewTwo.layer.cornerRadius = 30
         roundViewTwo.layer.masksToBounds = true
 
-        // Add a background image to roundViewThree
+        // Add a background image to roundViewTwo
         let backgroundImageactivity = UIImage(named: "activityback")
         let backgroundImageViewactivity = UIImageView(image: backgroundImageactivity)
         backgroundImageViewactivity.translatesAutoresizingMaskIntoConstraints = false
@@ -462,7 +462,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundviewsix.layer.cornerRadius = 30
         roundviewsix.layer.masksToBounds = true
         
-        // Add a background image to roundViewThree
+        // Add a background image to roundViewsix
         let backgroundImagerandom = UIImage(named: "randomback")
         let backgroundImageViewrandom = UIImageView(image: backgroundImagerandom)
         backgroundImageViewrandom.translatesAutoresizingMaskIntoConstraints = false
@@ -524,6 +524,14 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         roundviewseven.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30).isActive = true
         roundviewseven.layer.cornerRadius = 30
         roundviewseven.layer.masksToBounds = true
+        
+        // Add a background image to roundViewseven
+        let backgroundImageSeven = UIImage(named: "randomback")
+        let backgroundImageViewSeven = UIImageView(image: backgroundImageSeven)
+        backgroundImageViewSeven.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageViewSeven.contentMode = .scaleAspectFill
+        roundviewseven.addSubview(backgroundImageViewSeven)
+        
         
         // Add title label to roundviewseven
         let titleLabelAdd = UILabel()

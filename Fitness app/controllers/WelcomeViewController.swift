@@ -14,8 +14,8 @@ class WelcomeViewController: UIViewController {
     let welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome!"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 44)
+        label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -24,9 +24,9 @@ class WelcomeViewController: UIViewController {
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(red: 0.2, green: 0.6, blue: 0.8, alpha: 1.0)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
@@ -39,7 +39,12 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
+        // Add background image to the view
+                let backgroundImage = UIImageView(frame: view.bounds)
+                backgroundImage.image = UIImage(named: "exerciseback")
+                backgroundImage.contentMode = .scaleAspectFill
+                view.addSubview(backgroundImage)
+                view.sendSubviewToBack(backgroundImage)
         setupWelcomeLabel()
         setupNextButton()
         
@@ -64,8 +69,8 @@ class WelcomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
-            nextButton.widthAnchor.constraint(equalToConstant: 100),
-            nextButton.heightAnchor.constraint(equalToConstant: 40)
+            nextButton.widthAnchor.constraint(equalToConstant: 200),
+            nextButton.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
     
