@@ -6,11 +6,11 @@
 //
 
 
-    import UIKit
-    import Firebase
+import UIKit
+import Firebase
   
 
-    class AddedExerciseViewController: UIViewController {
+class AddedExerciseViewController: UIViewController {
         
         // Firebase Firestore reference
         let db = Firestore.firestore()

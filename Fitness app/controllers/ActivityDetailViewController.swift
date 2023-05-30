@@ -200,8 +200,25 @@ class ActivityDetailViewController: UIViewController, CLLocationManagerDelegate 
                            }
                        } else {
                            print("Activity document does not exist")
-                       }
-                   }
+                        // Create a new document for the user
+                                       let newActivityData: [String: Any] = [
+                                           "steps": 0,
+                                           "distance": 0.0,
+                                           "calories": 0.0
+                                       ]
+
+                                       activityRef.setData(newActivityData) { error in
+                                           if let error = error {
+                                               print("Error creating activity document: \(error)")
+                                           } else {
+                                               print("Activity document created")
+                                           }
+                                       }
+                                   }
+                               }
+                           } else {
+                               print("User ID not available")
+                       
                }
            }
     

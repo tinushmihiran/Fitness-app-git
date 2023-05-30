@@ -116,6 +116,8 @@
 		03F542B52A19E2D6003C33F8 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				03C218632A18D09900C58637 /* ScheduleModel.swift */,
+				0310433B2A16AA1B0068781D /* RandomModel.swift */,
 				03B3ADC62A10AC2C00BE01E8 /* Exercise.swift */,
 				03739ACA2A113BBF00BEAE33 /* WarmUp.swift */,
 				03739AC72A11149A00BEAE33 /* Meals.swift */,
@@ -140,10 +142,8 @@
 				031043262A15DBE00068781D /* ProfileViewController.swift */,
 				0310432C2A15EB310068781D /* ProfileDetailGetViewController.swift */,
 				031043372A169DB50068781D /* RandomDetailViewController.swift */,
-				0310433B2A16AA1B0068781D /* RandomModel.swift */,
 				03C2185D2A18B23B00C58637 /* AddScheduleViewController.swift */,
 				03C218602A18CE0900C58637 /* AddedExerciseViewController.swift */,
-				03C218632A18D09900C58637 /* ScheduleModel.swift */,
 				03F542BA2A19E834003C33F8 /* AllSetViewController.swift */,
 			);
 			path = controllers;

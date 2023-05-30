@@ -52,11 +52,10 @@ class StopwatchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        // Add the components in to the view
         view.addSubview(timerLabel)
         view.addSubview(startStopButton)
         view.addSubview(resetButton)
-        // Add the backButton to the view
         view.addSubview(backButton)
         
         // Set the constraints for the backButton

@@ -5,14 +5,14 @@
 //  Created by Tinush mihiran on 2023-05-09.
 //
 
-    import UIKit
-    import Firebase
-    import FirebaseAuth
-    class RegisterViewController: UIViewController {
+import UIKit
+import Firebase
+import FirebaseAuth
+
+class RegisterViewController: UIViewController {
        
         override func viewDidLoad() {
             super.viewDidLoad()
-         //  let auth = Auth.auth()
             view.backgroundColor = .white
 
             // Create an instance of UIImageView
@@ -203,10 +203,6 @@
             TitleRegister.translatesAutoresizingMaskIntoConstraints = false
             return TitleRegister
         }()
-
-
-
-
 
 
     let RegisterEmail: UITextField = {

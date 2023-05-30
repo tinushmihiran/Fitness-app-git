@@ -160,7 +160,7 @@ class ProfileDetailGetViewController: UIViewController, UIPickerViewDelegate {
         heightSlider.addTarget(self, action: #selector(heightSliderValueChanged), for: .valueChanged)
     }
     
-    // MARK: - Actions
+    //actions when click next btn
     
     @objc private func nextButtonTapped() {
         guard let name = nameTextField.text,
@@ -206,7 +206,6 @@ class ProfileDetailGetViewController: UIViewController, UIPickerViewDelegate {
         heightLabel.text = "\(height) cm"
     }
     
-    // MARK: - Helper
     
     private func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)

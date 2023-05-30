@@ -281,7 +281,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
                  roundedViewOneSub.topAnchor.constraint(equalTo: roundViewOne.topAnchor, constant: 100)
             
              ])
-        ////////////////////////
+    
         
         let TitleRoundViewOnesub: UILabel = {
             let TitleRoundViewOnesub = UILabel()
@@ -308,7 +308,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
 
         ])
       
-        //////////////////
+   
         // add rounded sub two view to round view one
          
           let roundedViewOneSubTwo: UIView = {
@@ -350,7 +350,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
               
                ])
                 roundedViewOneSubTwo.addSubview(RVBtnThree)
-        ////////////////////////
+
         
         let TitleRoundViewTwosub: UILabel = {
             let TitleRoundViewTwosub = UILabel()
@@ -375,11 +375,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
      
 
         ])
-      
-        //////////////////
-        
-        
-        
+
         let roundViewTwo = UIView()
         roundViewTwo.backgroundColor = .white
         stackView.addArrangedSubview(roundViewTwo)
@@ -398,13 +394,13 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         backgroundImageViewactivity.contentMode = .scaleAspectFill
         roundViewTwo.addSubview(backgroundImageViewactivity)
         
-        // Add constraints to the background image view to fit inside the roundViewThree view
+        // Add constraints to the background image view to fit inside the roundViewTwo view
         backgroundImageViewactivity.leadingAnchor.constraint(equalTo: roundViewTwo.leadingAnchor).isActive = true
         backgroundImageViewactivity.trailingAnchor.constraint(equalTo: roundViewTwo.trailingAnchor).isActive = true
         backgroundImageViewactivity.topAnchor.constraint(equalTo: roundViewTwo.topAnchor).isActive = true
         backgroundImageViewactivity.bottomAnchor.constraint(equalTo: roundViewTwo.bottomAnchor).isActive = true
 
-        //btn1 constrains
+        //RVBtnOne constrains
         NSLayoutConstraint.activate([
             RVBtnOne.widthAnchor.constraint(equalToConstant: 90),
             RVBtnOne.heightAnchor.constraint(equalToConstant: 50),
@@ -427,7 +423,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         
         roundViewTwo.addSubview(TitleRoundViewTwo)
         
-        //add constrains to text label
+        //add constrains to TitleRoundViewTwo label
         NSLayoutConstraint.activate([
             TitleRoundViewTwo.widthAnchor.constraint(equalToConstant: 150),
             TitleRoundViewTwo.heightAnchor.constraint(equalToConstant: 70),
@@ -440,7 +436,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
       
         roundViewTwo.addSubview(ActivityBtn)
         
-        //btn1 activity
+        //ActivityBtn activity
         NSLayoutConstraint.activate([
             ActivityBtn.widthAnchor.constraint(equalToConstant: 90),
             ActivityBtn.heightAnchor.constraint(equalToConstant: 50),
@@ -469,7 +465,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         backgroundImageViewrandom.contentMode = .scaleAspectFill
         roundviewsix.addSubview(backgroundImageViewrandom)
         
-        // Add constraints to the background image view to fit inside the roundViewThree view
+        // Add constraints to the background image view to fit inside the roundviewsix view
         backgroundImageViewrandom.leadingAnchor.constraint(equalTo: roundviewsix.leadingAnchor).isActive = true
         backgroundImageViewrandom.trailingAnchor.constraint(equalTo: roundviewsix.trailingAnchor).isActive = true
         backgroundImageViewrandom.topAnchor.constraint(equalTo: roundviewsix.topAnchor).isActive = true
@@ -487,7 +483,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: roundviewsix.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: roundviewsix.topAnchor, constant: 20).isActive = true
-        // Create the button
+        // Create the button inside the round view six
         let button: UIButton = {
             let button = UIButton(type: .system)
             button.translatesAutoresizingMaskIntoConstraints = false
@@ -547,7 +543,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         titleLabelAdd.topAnchor.constraint(equalTo: roundviewseven.topAnchor, constant: 20).isActive = true
         
         
-        // Create the button
+        // Create the button inside the roundview seven
         let buttonSchedule: UIButton = {
             let buttonSchedule = UIButton(type: .system)
             buttonSchedule.translatesAutoresizingMaskIntoConstraints = false
@@ -561,7 +557,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         }()
         roundviewseven.addSubview(buttonSchedule)
         
-        // Configure button's constraints
+        // Configure buttonSchedule constraints
         let constraints = [
             buttonSchedule.centerXAnchor.constraint(equalTo: roundviewseven.centerXAnchor),
             buttonSchedule.widthAnchor.constraint(equalToConstant: 120),
@@ -570,6 +566,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
         ]
         NSLayoutConstraint.activate(constraints)
         
+        //add viewAddedExercise button to the round view seven
         let viewAddedExercisesButton: UIButton = {
             let button = UIButton(type: .system)
             button.translatesAutoresizingMaskIntoConstraints = false
@@ -581,6 +578,8 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             return button
         }()
+        
+        //add button to round view seven
         roundviewseven.addSubview(viewAddedExercisesButton)
         
         let buttonConstraints = [
@@ -642,10 +641,10 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
      
 
         ])
-        
+        //add meals button inside the round view three
         roundViewThree.addSubview(MealsBtn)
         
-        //add constrains to diet meal btn
+        //add constrains to MealsBtn btn
         NSLayoutConstraint.activate([
             MealsBtn.widthAnchor.constraint(equalToConstant: 90),
             MealsBtn.heightAnchor.constraint(equalToConstant: 50),
@@ -758,8 +757,9 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             TitleRoundViewFive.translatesAutoresizingMaskIntoConstraints = false
             return TitleRoundViewFive
         }()
-        
+        //add title label to round view five
         roundViewFive.addSubview(TitleRoundViewFive)
+        //add StopwatchBtn to round view five
         roundViewFive.addSubview(StopwatchBtn)
         //add constrains to text label
         NSLayoutConstraint.activate([
@@ -768,11 +768,7 @@ class ExerciseViewController: UIViewController, UITextFieldDelegate {
             TitleRoundViewFive.leftAnchor.constraint(equalTo: roundViewFive.leftAnchor, constant: 20),
             TitleRoundViewFive.rightAnchor.constraint(equalTo: roundViewFive.rightAnchor,constant: 20),
             TitleRoundViewFive.topAnchor.constraint(equalTo: roundViewFive.topAnchor, constant: 10)
-     
-
         ])
-        
-        
         //stopwatch btn constrains
 
         NSLayoutConstraint.activate([
